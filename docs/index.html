@@ -772,7 +772,7 @@ function MapSection() {
     const mx = Math.max(...origins.map(o => last[o.k] || 0));
     origins.forEach(o => {
       const v = last[o.k] || 0,
-        r = Math.max(7, Math.sqrt(v / mx) * 38);
+        r = mx > 0 ? Math.max(7, Math.sqrt(v / mx) * 38) : 7;
       L.circleMarker([o.lat, o.lng], {
         radius: r,
         fillColor: o.c,
@@ -1398,16 +1398,12 @@ function CorrelacoesSection() {
   },
         /*#__PURE__*/React.createElement("div", {style:{background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,boxShadow:C.shadowMd,padding:20}},
       /*#__PURE__*/React.createElement("h3", {style:{margin:'0 0 4px',fontSize:13,fontWeight:700,color:C.primary}},
-        "Função de Correlação Cruzada (CCF) — 1ª diferença, sem COVID · lag −12 a +12 meses"
+        "Função de Correlação Cruzada (CCF) — 1ª diferença, sem COVID · lag 0 a +12 meses"
       ),
       /*#__PURE__*/React.createElement("p", {style:{margin:'0 0 14px',fontSize:12,color:C.muted,lineHeight:1.65,maxWidth:720}},
-        "Selecione o par de variáveis para visualizar a CCF completa. Barras à ",
-        /*#__PURE__*/React.createElement("strong", null, "direita do zero"),
-        " (lags positivos) indicam que a variável independente ",
+        "Selecione o par de variáveis para visualizar a CCF de lag 0 a +12 meses. Lags positivos indicam que a variável independente ",
         /*#__PURE__*/React.createElement("em", null, "antecede"),
-        " as chegadas — relação causal potencial. Barras à ",
-        /*#__PURE__*/React.createElement("strong", null, "esquerda"),
-        " indicam o sentido inverso (sem interpretação causal). A linha tracejada vermelha é o limite de significância estatística (IC 95%). A barra verde indica o lag ótimo identificado na análise."
+        " as chegadas — relação causal potencial. A linha tracejada vermelha é o limite de significância estatística (IC 95%). A barra verde indica o lag ótimo identificado na análise."
       ),
       /*#__PURE__*/React.createElement(CCFFullChart, null)
     )
@@ -1457,7 +1453,7 @@ function ProjecaoSection() {
 
   const holdoutStart = holdout[0].mes;
   const histIdx = D.series.findIndex(s => s.mes >= holdoutStart);
-  const histSlice = D.series.slice(Math.max(0, histIdx - 24), histIdx);
+  const histSlice = histIdx >= 0 ? D.series.slice(Math.max(0, histIdx - 24), histIdx) : D.series;
 
   // chartData: quando alt, remapeia sarimax2→sarimax para o gráfico
   const chartData = [
@@ -3034,3 +3030,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 </script>
 </body>
 </html>
+                                                                                                                                                                                                            
