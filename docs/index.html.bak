@@ -1,0 +1,2553 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Monitor de Turismo Internacional — Rio de Janeiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
+<script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+*{font-family:'Inter',sans-serif;box-sizing:border-box}body{margin:0;background:#F8FAFC}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:#EDF2F7}
+::-webkit-scrollbar-thumb{background:#CBD5E0;border-radius:10px}
+.leaflet-container{border-radius:8px}a{text-decoration:none}
+</style>
+</head>
+<body>
+<script>
+window.onerror=function(msg,src,l,c,err){
+  var d=document.getElementById('root');
+  if(d)d.innerHTML='<div style="padding:2rem;font-family:monospace;color:#c00;background:#fff;border:2px solid #c00;margin:2rem;border-radius:8px"><b>Erro JavaScript:</b><br>'+msg+'<br><small>'+(src||'')+(l?':'+l:'')+'</small></div>';
+  return false;
+};
+</script>
+<script id="md" type="application/json">{"series":[{"mes":"2018-01","chegadas_br":434321.0,"chegadas_rj":136541.0,"chegadas_europa":29549.0,"chegadas_arg":65789.0,"chegadas_chile":19444.0,"chegadas_uru":3110.0,"chegadas_eua":6565.0,"usd_brl":3.2458,"eur_brl":3.9573,"ars_brl":0.1622,"clp_brl":0.0053,"uyu_brl":0.1123,"brent_close":68.89,"brent_high":70.78,"qav":1.952,"voos":1331.0,"assentos":291538.0,"rotas":29.0},{"mes":"2018-02","chegadas_br":439123.0,"chegadas_rj":137791.0,"chegadas_europa":38430.0,"chegadas_arg":49135.0,"chegadas_chile":19946.0,"chegadas_uru":2696.0,"chegadas_eua":11312.0,"usd_brl":3.3046,"eur_brl":4.0716,"ars_brl":0.1613,"clp_brl":0.0054,"uyu_brl":0.1142,"brent_close":64.73,"brent_high":69.72,"qav":1.849,"voos":1161.0,"assentos":252756.0,"rotas":28.0},{"mes":"2018-03","chegadas_br":467376.0,"chegadas_rj":134818.0,"chegadas_europa":37267.0,"chegadas_arg":52422.0,"chegadas_chile":11223.0,"chegadas_uru":4403.0,"chegadas_eua":11991.0,"usd_brl":3.5066,"eur_brl":4.2349,"ars_brl":0.1642,"clp_brl":0.0055,"uyu_brl":0.1163,"brent_close":69.34,"brent_high":70.4,"qav":1.858,"voos":890.0,"assentos":195194.0,"rotas":28.0},{"mes":"2018-04","chegadas_br":332699.0,"chegadas_rj":91562.0,"chegadas_europa":24760.0,"chegadas_arg":35576.0,"chegadas_chile":9339.0,"chegadas_uru":2189.0,"chegadas_eua":8175.0,"usd_brl":3.7225,"eur_brl":4.3516,"ars_brl":0.1707,"clp_brl":0.0057,"uyu_brl":0.1232,"brent_close":74.69,"brent_high":75.61,"qav":2.015,"voos":1026.0,"assentos":222956.0,"rotas":27.0},{"mes":"2018-05","chegadas_br":267609.0,"chegadas_rj":70121.0,"chegadas_europa":18819.0,"chegadas_arg":19619.0,"chegadas_chile":9217.0,"chegadas_uru":1776.0,"chegadas_eua":8683.0,"usd_brl":3.8765,"eur_brl":4.5289,"ars_brl":0.149,"clp_brl":0.0059,"uyu_brl":0.1195,"brent_close":77.56,"brent_high":80.5,"qav":2.155,"voos":1055.0,"assentos":230827.0,"rotas":32.0},{"mes":"2018-06","chegadas_br":239004.0,"chegadas_rj":60522.0,"chegadas_europa":17082.0,"chegadas_arg":14534.0,"chegadas_chile":7864.0,"chegadas_uru":1479.0,"chegadas_eua":7856.0,"usd_brl":3.7557,"eur_brl":4.392,"ars_brl":0.1337,"clp_brl":0.0059,"uyu_brl":0.1236,"brent_close":79.23,"brent_high":79.56,"qav":2.09,"voos":1017.0,"assentos":223922.0,"rotas":29.0},{"mes":"2018-07","chegadas_br":327456.0,"chegadas_rj":90779.0,"chegadas_europa":25399.0,"chegadas_arg":27619.0,"chegadas_chile":12358.0,"chegadas_uru":2152.0,"chegadas_eua":9873.0,"usd_brl":4.0545,"eur_brl":4.7035,"ars_brl":0.1368,"clp_brl":0.0059,"uyu_brl":0.1223,"brent_close":74.21,"brent_high":79.25,"qav":2.098,"voos":1163.0,"assentos":251734.0,"rotas":32.0},{"mes":"2018-08","chegadas_br":338686.0,"chegadas_rj":93604.0,"chegadas_europa":28834.0,"chegadas_arg":23575.0,"chegadas_chile":10156.0,"chegadas_uru":2522.0,"chegadas_eua":11891.0,"usd_brl":4.0477,"eur_brl":4.6986,"ars_brl":0.1096,"clp_brl":0.0059,"uyu_brl":0.1266,"brent_close":77.64,"brent_high":78.32,"qav":2.118,"voos":1107.0,"assentos":242853.0,"rotas":29.0},{"mes":"2018-09","chegadas_br":332913.0,"chegadas_rj":91437.0,"chegadas_europa":22824.0,"chegadas_arg":27936.0,"chegadas_chile":12412.0,"chegadas_uru":3859.0,"chegadas_eua":8638.0,"usd_brl":3.7218,"eur_brl":4.2094,"ars_brl":0.098,"clp_brl":0.0062,"uyu_brl":0.123,"brent_close":82.73,"brent_high":83.41,"qav":2.189,"voos":1060.0,"assentos":238137.0,"rotas":27.0},{"mes":"2018-10","chegadas_br":332546.0,"chegadas_rj":98535.0,"chegadas_europa":28191.0,"chegadas_arg":27103.0,"chegadas_chile":13548.0,"chegadas_uru":3313.0,"chegadas_eua":8233.0,"usd_brl":3.8662,"eur_brl":4.3746,"ars_brl":0.1036,"clp_brl":0.0053,"uyu_brl":0.1133,"brent_close":75.04,"brent_high":86.27,"qav":2.249,"voos":1064.0,"assentos":237830.0,"rotas":26.0},{"mes":"2018-11","chegadas_br":361458.0,"chegadas_rj":104648.0,"chegadas_europa":33112.0,"chegadas_arg":29587.0,"chegadas_chile":12717.0,"chegadas_uru":2581.0,"chegadas_eua":9589.0,"usd_brl":3.8804,"eur_brl":4.4504,"ars_brl":0.1024,"clp_brl":0.0057,"uyu_brl":0.1193,"brent_close":59.46,"brent_high":75.03,"qav":1.945,"voos":989.0,"assentos":227748.0,"rotas":25.0},{"mes":"2018-12","chegadas_br":454888.0,"chegadas_rj":137441.0,"chegadas_europa":41275.0,"chegadas_arg":44710.0,"chegadas_chile":15681.0,"chegadas_uru":2550.0,"chegadas_eua":14932.0,"usd_brl":3.6439,"eur_brl":4.1708,"ars_brl":0.103,"clp_brl":0.0056,"uyu_brl":0.1198,"brent_close":54.02,"brent_high":63.93,"qav":1.696,"voos":1206.0,"assentos":264689.0,"rotas":27.0},{"mes":"2019-01","chegadas_br":435526.0,"chegadas_rj":126142.0,"chegadas_europa":28503.0,"chegadas_arg":51022.0,"chegadas_chile":19037.0,"chegadas_uru":3418.0,"chegadas_eua":8882.0,"usd_brl":3.7511,"eur_brl":4.265,"ars_brl":0.0976,"clp_brl":0.0056,"uyu_brl":0.1118,"brent_close":60.84,"brent_high":62.99,"qav":1.784,"voos":1433.0,"assentos":304714.0,"rotas":29.0},{"mes":"2019-02","chegadas_br":481319.0,"chegadas_rj":135859.0,"chegadas_europa":39488.0,"chegadas_arg":44972.0,"chegadas_chile":21203.0,"chegadas_uru":4050.0,"chegadas_eua":10285.0,"usd_brl":3.9238,"eur_brl":4.4013,"ars_brl":0.0958,"clp_brl":0.0057,"uyu_brl":0.1148,"brent_close":66.31,"brent_high":67.84,"qav":1.914,"voos":1223.0,"assentos":261567.0,"rotas":28.0},{"mes":"2019-03","chegadas_br":443976.0,"chegadas_rj":135509.0,"chegadas_europa":38102.0,"chegadas_arg":47236.0,"chegadas_chile":13301.0,"chegadas_uru":3159.0,"chegadas_eua":14123.0,"usd_brl":3.9207,"eur_brl":4.3964,"ars_brl":0.0903,"clp_brl":0.0058,"uyu_brl":0.1162,"brent_close":67.58,"brent_high":68.48,"qav":1.902,"voos":1232.0,"assentos":260964.0,"rotas":30.0},{"mes":"2019-04","chegadas_br":333847.0,"chegadas_rj":91706.0,"chegadas_europa":31461.0,"chegadas_arg":27788.0,"chegadas_chile":8811.0,"chegadas_uru":4300.0,"chegadas_eua":7313.0,"usd_brl":3.9218,"eur_brl":4.385,"ars_brl":0.0884,"clp_brl":0.0058,"uyu_brl":0.113,"brent_close":72.06,"brent_high":74.75,"qav":1.977,"voos":852.0,"assentos":188722.0,"rotas":25.0},{"mes":"2019-05","chegadas_br":266872.0,"chegadas_rj":72060.0,"chegadas_europa":20849.0,"chegadas_arg":20291.0,"chegadas_chile":10116.0,"chegadas_uru":2064.0,"chegadas_eua":7843.0,"usd_brl":3.8518,"eur_brl":4.376,"ars_brl":0.0874,"clp_brl":0.0055,"uyu_brl":0.1113,"brent_close":61.99,"brent_high":72.44,"qav":1.972,"voos":901.0,"assentos":202859.0,"rotas":24.0},{"mes":"2019-06","chegadas_br":291930.0,"chegadas_rj":77382.0,"chegadas_europa":18919.0,"chegadas_arg":18614.0,"chegadas_chile":12553.0,"chegadas_uru":2438.0,"chegadas_eua":9219.0,"usd_brl":3.8125,"eur_brl":4.2236,"ars_brl":0.0906,"clp_brl":0.0057,"uyu_brl":0.1092,"brent_close":64.74,"brent_high":66.02,"qav":1.817,"voos":891.0,"assentos":195174.0,"rotas":24.0},{"mes":"2019-07","chegadas_br":327715.0,"chegadas_rj":87146.0,"chegadas_europa":27624.0,"chegadas_arg":24658.0,"chegadas_chile":10734.0,"chegadas_uru":2089.0,"chegadas_eua":8922.0,"usd_brl":4.1445,"eur_brl":4.5526,"ars_brl":0.087,"clp_brl":0.0054,"uyu_brl":0.1111,"brent_close":65.05,"brent_high":67.27,"qav":1.913,"voos":1016.0,"assentos":226836.0,"rotas":27.0},{"mes":"2019-08","chegadas_br":321792.0,"chegadas_rj":89031.0,"chegadas_europa":30663.0,"chegadas_arg":22450.0,"chegadas_chile":9885.0,"chegadas_uru":2533.0,"chegadas_eua":9620.0,"usd_brl":4.1551,"eur_brl":4.5282,"ars_brl":0.0696,"clp_brl":0.0057,"uyu_brl":0.1131,"brent_close":59.25,"brent_high":64.05,"qav":1.8,"voos":974.0,"assentos":218813.0,"rotas":25.0},{"mes":"2019-09","chegadas_br":311874.0,"chegadas_rj":85406.0,"chegadas_europa":23445.0,"chegadas_arg":23317.0,"chegadas_chile":12720.0,"chegadas_uru":3215.0,"chegadas_eua":8236.0,"usd_brl":4.0174,"eur_brl":4.4794,"ars_brl":0.0721,"clp_brl":0.0057,"uyu_brl":0.1127,"brent_close":59.25,"brent_high":70.32,"qav":1.874,"voos":938.0,"assentos":211376.0,"rotas":24.0},{"mes":"2019-10","chegadas_br":313675.0,"chegadas_rj":90255.0,"chegadas_europa":28279.0,"chegadas_arg":25085.0,"chegadas_chile":12516.0,"chegadas_uru":1752.0,"chegadas_eua":9452.0,"usd_brl":4.2364,"eur_brl":4.6664,"ars_brl":0.0674,"clp_brl":0.0054,"uyu_brl":0.1072,"brent_close":59.62,"brent_high":62.09,"qav":1.861,"voos":901.0,"assentos":204605.0,"rotas":25.0},{"mes":"2019-11","chegadas_br":336108.0,"chegadas_rj":92901.0,"chegadas_europa":32484.0,"chegadas_arg":27249.0,"chegadas_chile":9742.0,"chegadas_uru":1673.0,"chegadas_eua":9756.0,"usd_brl":4.019,"eur_brl":4.5053,"ars_brl":0.0707,"clp_brl":0.0053,"uyu_brl":0.1114,"brent_close":60.49,"brent_high":63.58,"qav":1.824,"voos":918.0,"assentos":206979.0,"rotas":27.0},{"mes":"2019-12","chegadas_br":423894.0,"chegadas_rj":115125.0,"chegadas_europa":38012.0,"chegadas_arg":34360.0,"chegadas_chile":13123.0,"chegadas_uru":2415.0,"chegadas_eua":13333.0,"usd_brl":4.282,"eur_brl":4.75,"ars_brl":0.0671,"clp_brl":0.0053,"uyu_brl":0.1077,"brent_close":65.29,"brent_high":67.59,"qav":1.893,"voos":1060.0,"assentos":238540.0,"rotas":30.0},{"mes":"2020-01","chegadas_br":389855.0,"chegadas_rj":119848.0,"chegadas_europa":29670.0,"chegadas_arg":43388.0,"chegadas_chile":19240.0,"chegadas_uru":4791.0,"chegadas_eua":9738.0,"usd_brl":4.4733,"eur_brl":4.9318,"ars_brl":0.071,"clp_brl":0.0053,"uyu_brl":0.1139,"brent_close":56.62,"brent_high":70.99,"qav":1.77,"voos":1316.0,"assentos":283688.0,"rotas":28.0},{"mes":"2020-02","chegadas_br":453751.0,"chegadas_rj":141351.0,"chegadas_europa":47049.0,"chegadas_arg":37919.0,"chegadas_chile":19197.0,"chegadas_uru":2200.0,"chegadas_eua":16880.0,"usd_brl":5.2046,"eur_brl":5.7402,"ars_brl":0.072,"clp_brl":0.0055,"uyu_brl":0.1142,"brent_close":49.67,"brent_high":59.56,"qav":1.509,"voos":1138.0,"assentos":248676.0,"rotas":30.0},{"mes":"2020-03","chegadas_br":195902.0,"chegadas_rj":58436.0,"chegadas_europa":17876.0,"chegadas_arg":20224.0,"chegadas_chile":7176.0,"chegadas_uru":1051.0,"chegadas_eua":5274.0,"usd_brl":5.4858,"eur_brl":6.0097,"ars_brl":0.0808,"clp_brl":0.0061,"uyu_brl":0.1189,"brent_close":26.35,"brent_high":53.69,"qav":0.953,"voos":798.0,"assentos":177037.0,"rotas":28.0},{"mes":"2020-04","chegadas_br":377.0,"chegadas_rj":1.0,"chegadas_europa":1.0,"chegadas_arg":0.0,"chegadas_chile":0.0,"chegadas_uru":0.0,"chegadas_eua":0.0,"usd_brl":5.3361,"eur_brl":5.922,"ars_brl":0.0821,"clp_brl":0.0066,"uyu_brl":0.1293,"brent_close":26.48,"brent_high":38.31,"qav":0.606,"voos":4.0,"assentos":1116.0,"rotas":1.0},{"mes":"2020-05","chegadas_br":379.0,"chegadas_rj":11.0,"chegadas_europa":9.0,"chegadas_arg":2.0,"chegadas_chile":0.0,"chegadas_uru":0.0,"chegadas_eua":0.0,"usd_brl":5.4661,"eur_brl":6.139,"ars_brl":0.0778,"clp_brl":0.0067,"uyu_brl":0.1232,"brent_close":37.84,"brent_high":38.17,"qav":0.686,"voos":7.0,"assentos":1789.0,"rotas":4.0},{"mes":"2020-06","chegadas_br":477.0,"chegadas_rj":41.0,"chegadas_europa":40.0,"chegadas_arg":0.0,"chegadas_chile":0.0,"chegadas_uru":0.0,"chegadas_eua":0.0,"usd_brl":5.224,"eur_brl":6.1523,"ars_brl":0.0776,"clp_brl":0.0066,"uyu_brl":0.1299,"brent_close":41.27,"brent_high":43.97,"qav":0.983,"voos":11.0,"assentos":3205.0,"rotas":3.0},{"mes":"2020-07","chegadas_br":1134.0,"chegadas_rj":113.0,"chegadas_europa":105.0,"chegadas_arg":3.0,"chegadas_chile":0.0,"chegadas_uru":0.0,"chegadas_eua":2.0,"usd_brl":5.4914,"eur_brl":6.5545,"ars_brl":0.0722,"clp_brl":0.0069,"uyu_brl":0.1227,"brent_close":43.52,"brent_high":45.07,"qav":1.084,"voos":29.0,"assentos":8351.0,"rotas":3.0},{"mes":"2020-08","chegadas_br":7881.0,"chegadas_rj":676.0,"chegadas_europa":649.0,"chegadas_arg":3.0,"chegadas_chile":3.0,"chegadas_uru":0.0,"chegadas_eua":1.0,"usd_brl":5.6112,"eur_brl":6.5752,"ars_brl":0.074,"clp_brl":0.0071,"uyu_brl":0.1292,"brent_close":45.66,"brent_high":46.9,"qav":1.112,"voos":48.0,"assentos":13993.0,"rotas":5.0},{"mes":"2020-09","chegadas_br":11293.0,"chegadas_rj":886.0,"chegadas_europa":802.0,"chegadas_arg":7.0,"chegadas_chile":0.0,"chegadas_uru":1.0,"chegadas_eua":14.0,"usd_brl":5.7446,"eur_brl":6.6907,"ars_brl":0.0737,"clp_brl":0.0072,"uyu_brl":0.132,"brent_close":42.3,"brent_high":46.57,"qav":1.006,"voos":53.0,"assentos":15456.0,"rotas":4.0},{"mes":"2020-10","chegadas_br":22108.0,"chegadas_rj":2050.0,"chegadas_europa":1499.0,"chegadas_arg":12.0,"chegadas_chile":133.0,"chegadas_uru":2.0,"chegadas_eua":56.0,"usd_brl":5.3319,"eur_brl":6.3599,"ars_brl":0.0733,"clp_brl":0.0074,"uyu_brl":0.1335,"brent_close":37.94,"brent_high":43.99,"qav":1.047,"voos":72.0,"assentos":19292.0,"rotas":8.0},{"mes":"2020-11","chegadas_br":35360.0,"chegadas_rj":4345.0,"chegadas_europa":1743.0,"chegadas_arg":462.0,"chegadas_chile":578.0,"chegadas_uru":6.0,"chegadas_eua":801.0,"usd_brl":5.1937,"eur_brl":6.3428,"ars_brl":0.0656,"clp_brl":0.007,"uyu_brl":0.125,"brent_close":47.88,"brent_high":49.0,"qav":1.133,"voos":104.0,"assentos":25349.0,"rotas":10.0},{"mes":"2020-12","chegadas_br":67103.0,"chegadas_rj":14611.0,"chegadas_europa":6301.0,"chegadas_arg":2259.0,"chegadas_chile":1853.0,"chegadas_uru":19.0,"chegadas_eua":2340.0,"usd_brl":5.4625,"eur_brl":6.6293,"ars_brl":0.0618,"clp_brl":0.0073,"uyu_brl":0.1226,"brent_close":51.82,"brent_high":52.46,"qav":1.324,"voos":153.0,"assentos":36769.0,"rotas":11.0},{"mes":"2021-01","chegadas_br":51792.0,"chegadas_rj":10398.0,"chegadas_europa":2864.0,"chegadas_arg":1710.0,"chegadas_chile":2968.0,"chegadas_uru":8.0,"chegadas_eua":1847.0,"usd_brl":5.5986,"eur_brl":6.7597,"ars_brl":0.0626,"clp_brl":0.0074,"uyu_brl":0.1291,"brent_close":55.04,"brent_high":57.31,"qav":1.42,"voos":256.0,"assentos":58134.0,"rotas":14.0},{"mes":"2021-02","chegadas_br":35552.0,"chegadas_rj":7685.0,"chegadas_europa":1077.0,"chegadas_arg":1312.0,"chegadas_chile":3036.0,"chegadas_uru":3.0,"chegadas_eua":1710.0,"usd_brl":5.6315,"eur_brl":6.6046,"ars_brl":0.0623,"clp_brl":0.0077,"uyu_brl":0.1297,"brent_close":64.42,"brent_high":66.82,"qav":1.601,"voos":146.0,"assentos":34524.0,"rotas":8.0},{"mes":"2021-03","chegadas_br":28131.0,"chegadas_rj":4969.0,"chegadas_europa":913.0,"chegadas_arg":838.0,"chegadas_chile":905.0,"chegadas_uru":3.0,"chegadas_eua":1874.0,"usd_brl":5.4366,"eur_brl":6.5337,"ars_brl":0.0612,"clp_brl":0.0078,"uyu_brl":0.1269,"brent_close":62.74,"brent_high":70.67,"qav":1.661,"voos":130.0,"assentos":33576.0,"rotas":8.0},{"mes":"2021-04","chegadas_br":15831.0,"chegadas_rj":2623.0,"chegadas_europa":600.0,"chegadas_arg":133.0,"chegadas_chile":33.0,"chegadas_uru":2.0,"chegadas_eua":1581.0,"usd_brl":5.2172,"eur_brl":6.378,"ars_brl":0.0581,"clp_brl":0.0076,"uyu_brl":0.124,"brent_close":66.76,"brent_high":68.44,"qav":1.669,"voos":120.0,"assentos":31126.0,"rotas":11.0},{"mes":"2021-05","chegadas_br":15899.0,"chegadas_rj":2554.0,"chegadas_europa":692.0,"chegadas_arg":134.0,"chegadas_chile":6.0,"chegadas_uru":6.0,"chegadas_eua":1338.0,"usd_brl":4.9686,"eur_brl":5.8903,"ars_brl":0.0551,"clp_brl":0.0072,"uyu_brl":0.119,"brent_close":68.95,"brent_high":69.9,"qav":1.752,"voos":132.0,"assentos":34000.0,"rotas":15.0},{"mes":"2021-06","chegadas_br":20440.0,"chegadas_rj":2605.0,"chegadas_europa":864.0,"chegadas_arg":136.0,"chegadas_chile":106.0,"chegadas_uru":7.0,"chegadas_eua":951.0,"usd_brl":5.2123,"eur_brl":6.187,"ars_brl":0.0519,"clp_brl":0.0068,"uyu_brl":0.1143,"brent_close":74.62,"brent_high":75.77,"qav":1.857,"voos":106.0,"assentos":27774.0,"rotas":10.0},{"mes":"2021-07","chegadas_br":48312.0,"chegadas_rj":4586.0,"chegadas_europa":2414.0,"chegadas_arg":50.0,"chegadas_chile":27.0,"chegadas_uru":4.0,"chegadas_eua":1501.0,"usd_brl":5.1492,"eur_brl":6.0797,"ars_brl":0.0539,"clp_brl":0.0069,"uyu_brl":0.1194,"brent_close":75.41,"brent_high":76.8,"qav":1.887,"voos":108.0,"assentos":26835.0,"rotas":9.0},{"mes":"2021-08","chegadas_br":34446.0,"chegadas_rj":4591.0,"chegadas_europa":2285.0,"chegadas_arg":40.0,"chegadas_chile":434.0,"chegadas_uru":6.0,"chegadas_eua":1048.0,"usd_brl":5.4428,"eur_brl":6.3033,"ars_brl":0.0527,"clp_brl":0.0066,"uyu_brl":0.1213,"brent_close":71.63,"brent_high":74.52,"qav":1.817,"voos":111.0,"assentos":27979.0,"rotas":9.0},{"mes":"2021-09","chegadas_br":37830.0,"chegadas_rj":5882.0,"chegadas_europa":2212.0,"chegadas_arg":38.0,"chegadas_chile":975.0,"chegadas_uru":9.0,"chegadas_eua":1132.0,"usd_brl":5.6372,"eur_brl":6.5172,"ars_brl":0.0551,"clp_brl":0.0067,"uyu_brl":0.1269,"brent_close":78.31,"brent_high":79.95,"qav":2.003,"voos":135.0,"assentos":32448.0,"rotas":9.0},{"mes":"2021-10","chegadas_br":83284.0,"chegadas_rj":12595.0,"chegadas_europa":6507.0,"chegadas_arg":451.0,"chegadas_chile":1701.0,"chegadas_uru":7.0,"chegadas_eua":1925.0,"usd_brl":5.6239,"eur_brl":6.3753,"ars_brl":0.0565,"clp_brl":0.0069,"uyu_brl":0.1282,"brent_close":83.72,"brent_high":85.77,"qav":2.296,"voos":163.0,"assentos":40957.0,"rotas":9.0},{"mes":"2021-11","chegadas_br":86732.0,"chegadas_rj":16608.0,"chegadas_europa":5571.0,"chegadas_arg":2136.0,"chegadas_chile":3950.0,"chegadas_uru":46.0,"chegadas_eua":2308.0,"usd_brl":5.5703,"eur_brl":6.3323,"ars_brl":0.0557,"clp_brl":0.0068,"uyu_brl":0.1278,"brent_close":69.23,"brent_high":84.26,"qav":2.193,"voos":259.0,"assentos":57519.0,"rotas":14.0},{"mes":"2021-12","chegadas_br":127138.0,"chegadas_rj":26258.0,"chegadas_europa":9154.0,"chegadas_arg":4047.0,"chegadas_chile":5904.0,"chegadas_uru":46.0,"chegadas_eua":3717.0,"usd_brl":5.3041,"eur_brl":5.9581,"ars_brl":0.0542,"clp_brl":0.0065,"uyu_brl":0.1246,"brent_close":77.35,"brent_high":80.03,"qav":2.095,"voos":331.0,"assentos":75355.0,"rotas":15.0},{"mes":"2022-01","chegadas_br":163320.0,"chegadas_rj":42117.0,"chegadas_europa":9689.0,"chegadas_arg":14841.0,"chegadas_chile":9599.0,"chegadas_uru":38.0,"chegadas_eua":4364.0,"usd_brl":5.1599,"eur_brl":5.7889,"ars_brl":0.0505,"clp_brl":0.0066,"uyu_brl":0.1207,"brent_close":89.26,"brent_high":90.27,"qav":2.446,"voos":477.0,"assentos":104877.0,"rotas":20.0},{"mes":"2022-02","chegadas_br":167723.0,"chegadas_rj":29936.0,"chegadas_europa":8686.0,"chegadas_arg":9152.0,"chegadas_chile":5004.0,"chegadas_uru":31.0,"chegadas_eua":3694.0,"usd_brl":4.739,"eur_brl":5.2432,"ars_brl":0.048,"clp_brl":0.0065,"uyu_brl":0.1213,"brent_close":97.97,"brent_high":102.26,"qav":2.682,"voos":455.0,"assentos":101758.0,"rotas":16.0},{"mes":"2022-03","chegadas_br":199436.0,"chegadas_rj":51205.0,"chegadas_europa":14687.0,"chegadas_arg":16650.0,"chegadas_chile":7494.0,"chegadas_uru":74.0,"chegadas_eua":7153.0,"usd_brl":4.9721,"eur_brl":5.2411,"ars_brl":0.0427,"clp_brl":0.006,"uyu_brl":0.1156,"brent_close":104.71,"brent_high":134.91,"qav":3.495,"voos":472.0,"assentos":104838.0,"rotas":19.0},{"mes":"2022-04","chegadas_br":189965.0,"chegadas_rj":53649.0,"chegadas_europa":18955.0,"chegadas_arg":15698.0,"chegadas_chile":6219.0,"chegadas_uru":525.0,"chegadas_eua":6282.0,"usd_brl":4.7315,"eur_brl":5.0776,"ars_brl":0.0431,"clp_brl":0.0058,"uyu_brl":0.1218,"brent_close":107.14,"brent_high":113.61,"qav":3.914,"voos":482.0,"assentos":107341.0,"rotas":18.0},{"mes":"2022-05","chegadas_br":152858.0,"chegadas_rj":39816.0,"chegadas_europa":10352.0,"chegadas_arg":12276.0,"chegadas_chile":6533.0,"chegadas_uru":112.0,"chegadas_eua":5783.0,"usd_brl":5.2562,"eur_brl":5.5095,"ars_brl":0.0394,"clp_brl":0.0057,"uyu_brl":0.1186,"brent_close":115.6,"brent_high":120.8,"qav":3.902,"voos":494.0,"assentos":111034.0,"rotas":17.0},{"mes":"2022-06","chegadas_br":148748.0,"chegadas_rj":38752.0,"chegadas_europa":10266.0,"chegadas_arg":12354.0,"chegadas_chile":5000.0,"chegadas_uru":147.0,"chegadas_eua":6189.0,"usd_brl":5.1734,"eur_brl":5.2862,"ars_brl":0.042,"clp_brl":0.0057,"uyu_brl":0.1331,"brent_close":109.03,"brent_high":121.74,"qav":4.12,"voos":495.0,"assentos":109630.0,"rotas":14.0},{"mes":"2022-07","chegadas_br":199397.0,"chegadas_rj":52492.0,"chegadas_europa":16266.0,"chegadas_arg":18291.0,"chegadas_chile":5583.0,"chegadas_uru":131.0,"chegadas_eua":6598.0,"usd_brl":5.1831,"eur_brl":5.2126,"ars_brl":0.0394,"clp_brl":0.0057,"uyu_brl":0.1262,"brent_close":103.97,"brent_high":110.72,"qav":3.478,"voos":546.0,"assentos":120355.0,"rotas":15.0},{"mes":"2022-08","chegadas_br":205602.0,"chegadas_rj":48051.0,"chegadas_europa":16339.0,"chegadas_arg":14374.0,"chegadas_chile":5414.0,"chegadas_uru":132.0,"chegadas_eua":6439.0,"usd_brl":5.4154,"eur_brl":5.3066,"ars_brl":0.0374,"clp_brl":0.0058,"uyu_brl":0.1271,"brent_close":95.64,"brent_high":103.48,"qav":3.339,"voos":525.0,"assentos":115982.0,"rotas":16.0},{"mes":"2022-09","chegadas_br":206845.0,"chegadas_rj":55327.0,"chegadas_europa":13321.0,"chegadas_arg":18916.0,"chegadas_chile":8366.0,"chegadas_uru":705.0,"chegadas_eua":7439.0,"usd_brl":5.1791,"eur_brl":5.1185,"ars_brl":0.0368,"clp_brl":0.0056,"uyu_brl":0.1297,"brent_close":85.14,"brent_high":95.54,"qav":3.262,"voos":541.0,"assentos":118681.0,"rotas":16.0},{"mes":"2022-10","chegadas_br":228798.0,"chegadas_rj":63364.0,"chegadas_europa":17003.0,"chegadas_arg":23447.0,"chegadas_chile":9604.0,"chegadas_uru":186.0,"chegadas_eua":6778.0,"usd_brl":5.1851,"eur_brl":5.3951,"ars_brl":0.033,"clp_brl":0.0055,"uyu_brl":0.1276,"brent_close":92.81,"brent_high":96.75,"qav":3.715,"voos":599.0,"assentos":130419.0,"rotas":19.0},{"mes":"2022-11","chegadas_br":264802.0,"chegadas_rj":69099.0,"chegadas_europa":20717.0,"chegadas_arg":21611.0,"chegadas_chile":10063.0,"chegadas_uru":118.0,"chegadas_eua":8863.0,"usd_brl":5.286,"eur_brl":5.6571,"ars_brl":0.031,"clp_brl":0.0058,"uyu_brl":0.1312,"brent_close":86.97,"brent_high":97.85,"qav":3.16,"voos":650.0,"assentos":148319.0,"rotas":22.0},{"mes":"2022-12","chegadas_br":339621.0,"chegadas_rj":93151.0,"chegadas_europa":25422.0,"chegadas_arg":29791.0,"chegadas_chile":12836.0,"chegadas_uru":323.0,"chegadas_eua":14566.0,"usd_brl":5.0731,"eur_brl":5.5104,"ars_brl":0.0299,"clp_brl":0.0062,"uyu_brl":0.1322,"brent_close":85.65,"brent_high":89.18,"qav":2.897,"voos":766.0,"assentos":169697.0,"rotas":22.0},{"mes":"2023-01","chegadas_br":366577.0,"chegadas_rj":118854.0,"chegadas_europa":22215.0,"chegadas_arg":48727.0,"chegadas_chile":23664.0,"chegadas_uru":1685.0,"chegadas_eua":11667.0,"usd_brl":5.2367,"eur_brl":5.5383,"ars_brl":0.0271,"clp_brl":0.0064,"uyu_brl":0.1309,"brent_close":85.46,"brent_high":89.0,"qav":3.542,"voos":978.0,"assentos":209923.0,"rotas":25.0},{"mes":"2023-02","chegadas_br":389390.0,"chegadas_rj":120037.0,"chegadas_europa":32217.0,"chegadas_arg":34690.0,"chegadas_chile":24292.0,"chegadas_uru":208.0,"chegadas_eua":15314.0,"usd_brl":5.0631,"eur_brl":5.4879,"ars_brl":0.0266,"clp_brl":0.0063,"uyu_brl":0.1341,"brent_close":83.45,"brent_high":86.55,"qav":2.79,"voos":835.0,"assentos":182152.0,"rotas":26.0},{"mes":"2023-03","chegadas_br":385442.0,"chegadas_rj":107091.0,"chegadas_europa":28486.0,"chegadas_arg":35891.0,"chegadas_chile":15559.0,"chegadas_uru":518.0,"chegadas_eua":14010.0,"usd_brl":4.9865,"eur_brl":5.4966,"ars_brl":0.0242,"clp_brl":0.0064,"uyu_brl":0.1302,"brent_close":79.89,"brent_high":86.17,"qav":2.679,"voos":802.0,"assentos":176137.0,"rotas":23.0},{"mes":"2023-04","chegadas_br":270275.0,"chegadas_rj":80952.0,"chegadas_europa":21484.0,"chegadas_arg":24948.0,"chegadas_chile":13391.0,"chegadas_uru":1982.0,"chegadas_eua":8864.0,"usd_brl":5.0574,"eur_brl":5.4053,"ars_brl":0.0224,"clp_brl":0.0062,"uyu_brl":0.1291,"brent_close":80.33,"brent_high":86.9,"qav":2.374,"voos":704.0,"assentos":158391.0,"rotas":20.0},{"mes":"2023-05","chegadas_br":225811.0,"chegadas_rj":65664.0,"chegadas_europa":13996.0,"chegadas_arg":20449.0,"chegadas_chile":12685.0,"chegadas_uru":664.0,"chegadas_eua":9189.0,"usd_brl":4.786,"eur_brl":5.2215,"ars_brl":0.0211,"clp_brl":0.0063,"uyu_brl":0.1303,"brent_close":72.6,"brent_high":79.82,"qav":2.173,"voos":705.0,"assentos":158663.0,"rotas":20.0},{"mes":"2023-06","chegadas_br":218281.0,"chegadas_rj":59619.0,"chegadas_europa":12256.0,"chegadas_arg":14941.0,"chegadas_chile":13365.0,"chegadas_uru":583.0,"chegadas_eua":9870.0,"usd_brl":4.7241,"eur_brl":5.1944,"ars_brl":0.0186,"clp_brl":0.006,"uyu_brl":0.1272,"brent_close":75.41,"brent_high":78.47,"qav":2.25,"voos":683.0,"assentos":153374.0,"rotas":21.0},{"mes":"2023-07","chegadas_br":276493.0,"chegadas_rj":83539.0,"chegadas_europa":18487.0,"chegadas_arg":25414.0,"chegadas_chile":19227.0,"chegadas_uru":1725.0,"chegadas_eua":9601.0,"usd_brl":4.9544,"eur_brl":5.3711,"ars_brl":0.0172,"clp_brl":0.0056,"uyu_brl":0.1251,"brent_close":85.43,"brent_high":85.58,"qav":2.488,"voos":826.0,"assentos":183423.0,"rotas":21.0},{"mes":"2023-08","chegadas_br":289649.0,"chegadas_rj":80287.0,"chegadas_europa":20244.0,"chegadas_arg":20005.0,"chegadas_chile":15559.0,"chegadas_uru":1601.0,"chegadas_eua":10168.0,"usd_brl":5.032,"eur_brl":5.3195,"ars_brl":0.0142,"clp_brl":0.0058,"uyu_brl":0.131,"brent_close":86.83,"brent_high":87.37,"qav":2.989,"voos":820.0,"assentos":180997.0,"rotas":20.0},{"mes":"2023-09","chegadas_br":279190.0,"chegadas_rj":81834.0,"chegadas_europa":16297.0,"chegadas_arg":23635.0,"chegadas_chile":18355.0,"chegadas_uru":1779.0,"chegadas_eua":9653.0,"usd_brl":5.035,"eur_brl":5.325,"ars_brl":0.0144,"clp_brl":0.0056,"uyu_brl":0.1307,"brent_close":92.2,"brent_high":95.35,"qav":3.12,"voos":781.0,"assentos":174190.0,"rotas":20.0},{"mes":"2023-10","chegadas_br":316430.0,"chegadas_rj":92700.0,"chegadas_europa":22598.0,"chegadas_arg":27630.0,"chegadas_chile":19514.0,"chegadas_uru":1992.0,"chegadas_eua":9171.0,"usd_brl":4.9205,"eur_brl":5.356,"ars_brl":0.0144,"clp_brl":0.0056,"uyu_brl":0.1261,"brent_close":85.02,"brent_high":92.32,"qav":2.881,"voos":808.0,"assentos":181646.0,"rotas":23.0},{"mes":"2023-11","chegadas_br":369489.0,"chegadas_rj":114442.0,"chegadas_europa":27124.0,"chegadas_arg":40529.0,"chegadas_chile":18074.0,"chegadas_uru":2035.0,"chegadas_eua":12990.0,"usd_brl":4.8521,"eur_brl":5.3548,"ars_brl":0.0136,"clp_brl":0.0056,"uyu_brl":0.1258,"brent_close":80.86,"brent_high":87.12,"qav":2.734,"voos":964.0,"assentos":217068.0,"rotas":26.0},{"mes":"2023-12","chegadas_br":407233.0,"chegadas_rj":124941.0,"chegadas_europa":32576.0,"chegadas_arg":36121.0,"chegadas_chile":20420.0,"chegadas_uru":2362.0,"chegadas_eua":20576.0,"usd_brl":4.9526,"eur_brl":5.3567,"ars_brl":0.006,"clp_brl":0.0055,"uyu_brl":0.1241,"brent_close":77.04,"brent_high":81.72,"qav":2.387,"voos":1008.0,"assentos":229261.0,"rotas":24.0},{"mes":"2024-01","chegadas_br":439686.0,"chegadas_rj":149613.0,"chegadas_europa":27655.0,"chegadas_arg":54751.0,"chegadas_chile":3685.0,"chegadas_uru":4613.0,"chegadas_eua":14166.0,"usd_brl":4.9716,"eur_brl":5.3708,"ars_brl":0.006,"clp_brl":0.0053,"uyu_brl":0.127,"brent_close":81.71,"brent_high":84.8,"qav":2.585,"voos":1294.0,"assentos":281601.0,"rotas":26.0},{"mes":"2024-02","chegadas_br":497169.0,"chegadas_rj":159333.0,"chegadas_europa":42455.0,"chegadas_arg":40955.0,"chegadas_chile":38060.0,"chegadas_uru":2946.0,"chegadas_eua":20321.0,"usd_brl":5.0153,"eur_brl":5.412,"ars_brl":0.0059,"clp_brl":0.0051,"uyu_brl":0.1268,"brent_close":81.91,"brent_high":83.13,"qav":2.683,"voos":1148.0,"assentos":254640.0,"rotas":27.0},{"mes":"2024-03","chegadas_br":471690.0,"chegadas_rj":143527.0,"chegadas_europa":37288.0,"chegadas_arg":43148.0,"chegadas_chile":23443.0,"chegadas_uru":5122.0,"chegadas_eua":19415.0,"usd_brl":5.1934,"eur_brl":5.5382,"ars_brl":0.0058,"clp_brl":0.0051,"uyu_brl":0.1337,"brent_close":87.0,"brent_high":87.07,"qav":2.593,"voos":1094.0,"assentos":246598.0,"rotas":22.0},{"mes":"2024-04","chegadas_br":297989.0,"chegadas_rj":98655.0,"chegadas_europa":27124.0,"chegadas_arg":27310.0,"chegadas_chile":17989.0,"chegadas_uru":2673.0,"chegadas_eua":11362.0,"usd_brl":5.2443,"eur_brl":5.6853,"ars_brl":0.0059,"clp_brl":0.0054,"uyu_brl":0.1355,"brent_close":86.33,"brent_high":91.18,"qav":2.605,"voos":922.0,"assentos":209955.0,"rotas":21.0},{"mes":"2024-05","chegadas_br":263253.0,"chegadas_rj":83817.0,"chegadas_europa":19543.0,"chegadas_arg":21087.0,"chegadas_chile":16699.0,"chegadas_uru":2192.0,"chegadas_eua":11789.0,"usd_brl":5.5925,"eur_brl":5.9912,"ars_brl":0.0059,"clp_brl":0.0057,"uyu_brl":0.1354,"brent_close":81.11,"brent_high":85.2,"qav":2.38,"voos":905.0,"assentos":208382.0,"rotas":24.0},{"mes":"2024-06","chegadas_br":264246.0,"chegadas_rj":82162.0,"chegadas_europa":15566.0,"chegadas_arg":20865.0,"chegadas_chile":19955.0,"chegadas_uru":2447.0,"chegadas_eua":11877.0,"usd_brl":5.65,"eur_brl":6.1161,"ars_brl":0.0061,"clp_brl":0.0059,"uyu_brl":0.1415,"brent_close":85.0,"brent_high":86.18,"qav":2.394,"voos":899.0,"assentos":207771.0,"rotas":22.0},{"mes":"2024-07","chegadas_br":325807.0,"chegadas_rj":107958.0,"chegadas_europa":27021.0,"chegadas_arg":35442.0,"chegadas_chile":17982.0,"chegadas_uru":4055.0,"chegadas_eua":11952.0,"usd_brl":5.6103,"eur_brl":6.1977,"ars_brl":0.0061,"clp_brl":0.006,"uyu_brl":0.1405,"brent_close":80.84,"brent_high":87.05,"qav":2.419,"voos":1100.0,"assentos":251320.0,"rotas":21.0},{"mes":"2024-08","chegadas_br":336580.0,"chegadas_rj":91360.0,"chegadas_europa":24726.0,"chegadas_arg":22194.0,"chegadas_chile":16186.0,"chegadas_uru":3160.0,"chegadas_eua":11606.0,"usd_brl":5.4482,"eur_brl":6.0677,"ars_brl":0.0059,"clp_brl":0.0061,"uyu_brl":0.1393,"brent_close":76.93,"brent_high":81.46,"qav":2.176,"voos":1048.0,"assentos":242118.0,"rotas":21.0},{"mes":"2024-09","chegadas_br":356298.0,"chegadas_rj":115859.0,"chegadas_europa":21977.0,"chegadas_arg":32634.0,"chegadas_chile":24958.0,"chegadas_uru":6732.0,"chegadas_eua":13286.0,"usd_brl":5.7867,"eur_brl":6.2977,"ars_brl":0.0056,"clp_brl":0.0061,"uyu_brl":0.131,"brent_close":71.77,"brent_high":77.63,"qav":1.982,"voos":1026.0,"assentos":234967.0,"rotas":22.0},{"mes":"2024-10","chegadas_br":401288.0,"chegadas_rj":130735.0,"chegadas_europa":28336.0,"chegadas_arg":38285.0,"chegadas_chile":28014.0,"chegadas_uru":6828.0,"chegadas_eua":13303.0,"usd_brl":5.973,"eur_brl":6.3164,"ars_brl":0.0058,"clp_brl":0.006,"uyu_brl":0.1397,"brent_close":72.81,"brent_high":80.55,"qav":2.068,"voos":1083.0,"assentos":246861.0,"rotas":23.0},{"mes":"2024-11","chegadas_br":423466.0,"chegadas_rj":145026.0,"chegadas_europa":34374.0,"chegadas_arg":38157.0,"chegadas_chile":28035.0,"chegadas_uru":5048.0,"chegadas_eua":20198.0,"usd_brl":6.1778,"eur_brl":6.4023,"ars_brl":0.0059,"clp_brl":0.0061,"uyu_brl":0.1383,"brent_close":71.84,"brent_high":75.79,"qav":2.065,"voos":1173.0,"assentos":274387.0,"rotas":25.0},{"mes":"2024-12","chegadas_br":526874.0,"chegadas_rj":169357.0,"chegadas_europa":39710.0,"chegadas_arg":50091.0,"chegadas_chile":30104.0,"chegadas_uru":5170.0,"chegadas_eua":26221.0,"usd_brl":5.8415,"eur_brl":6.0538,"ars_brl":0.006,"clp_brl":0.0062,"uyu_brl":0.1415,"brent_close":74.64,"brent_high":74.89,"qav":2.097,"voos":1330.0,"assentos":308926.0,"rotas":25.0},{"mes":"2025-01","chegadas_br":608163.0,"chegadas_rj":223613.0,"chegadas_europa":33227.0,"chegadas_arg":92168.0,"chegadas_chile":48789.0,"chegadas_uru":9227.0,"chegadas_eua":21351.0,"usd_brl":5.8854,"eur_brl":6.1067,"ars_brl":0.0056,"clp_brl":0.006,"uyu_brl":0.1347,"brent_close":76.76,"brent_high":82.63,"qav":2.347,"voos":1628.0,"assentos":369060.0,"rotas":25.0},{"mes":"2025-02","chegadas_br":723726.0,"chegadas_rj":249713.0,"chegadas_europa":54876.0,"chegadas_arg":86771.0,"chegadas_chile":47057.0,"chegadas_uru":8080.0,"chegadas_eua":28952.0,"usd_brl":5.7055,"eur_brl":6.1719,"ars_brl":0.0055,"clp_brl":0.0061,"uyu_brl":0.1387,"brent_close":72.81,"brent_high":76.78,"qav":2.264,"voos":1503.0,"assentos":341420.0,"rotas":25.0},{"mes":"2025-03","chegadas_br":618716.0,"chegadas_rj":226066.0,"chegadas_europa":46383.0,"chegadas_arg":82038.0,"chegadas_chile":26598.0,"chegadas_uru":7622.0,"chegadas_eua":36171.0,"usd_brl":5.6748,"eur_brl":6.4286,"ars_brl":0.0053,"clp_brl":0.006,"uyu_brl":0.1353,"brent_close":74.74,"brent_high":74.81,"qav":2.069,"voos":1477.0,"assentos":337956.0,"rotas":23.0},{"mes":"2025-04","chegadas_br":446059.0,"chegadas_rj":152883.0,"chegadas_europa":33485.0,"chegadas_arg":56032.0,"chegadas_chile":20800.0,"chegadas_uru":11106.0,"chegadas_eua":11025.0,"usd_brl":5.7227,"eur_brl":6.4941,"ars_brl":0.0048,"clp_brl":0.006,"uyu_brl":0.1353,"brent_close":63.12,"brent_high":75.47,"qav":1.976,"voos":1197.0,"assentos":265758.0,"rotas":28.0},{"mes":"2025-05","chegadas_br":362342.0,"chegadas_rj":130380.0,"chegadas_europa":22959.0,"chegadas_arg":42392.0,"chegadas_chile":26753.0,"chegadas_uru":5495.0,"chegadas_eua":11823.0,"usd_brl":5.4326,"eur_brl":6.4037,"ars_brl":0.0048,"clp_brl":0.0061,"uyu_brl":0.1377,"brent_close":63.9,"brent_high":66.81,"qav":1.928,"voos":1170.0,"assentos":263456.0,"rotas":28.0},{"mes":"2025-06","chegadas_br":356898.0,"chegadas_rj":121357.0,"chegadas_europa":21508.0,"chegadas_arg":34414.0,"chegadas_chile":27570.0,"chegadas_uru":6573.0,"chegadas_eua":12043.0,"usd_brl":5.6015,"eur_brl":6.3945,"ars_brl":0.0045,"clp_brl":0.0058,"uyu_brl":0.136,"brent_close":67.61,"brent_high":81.4,"qav":2.094,"voos":1139.0,"assentos":256216.0,"rotas":23.0},{"mes":"2025-07","chegadas_br":464964.0,"chegadas_rj":170299.0,"chegadas_europa":31639.0,"chegadas_arg":70396.0,"chegadas_chile":27137.0,"chegadas_uru":7385.0,"chegadas_eua":12303.0,"usd_brl":5.4304,"eur_brl":6.3459,"ars_brl":0.0041,"clp_brl":0.0058,"uyu_brl":0.1395,"brent_close":71.7,"brent_high":72.83,"qav":2.244,"voos":1406.0,"assentos":309705.0,"rotas":30.0},{"mes":"2025-08","chegadas_br":465174.0,"chegadas_rj":150280.0,"chegadas_europa":35574.0,"chegadas_arg":47922.0,"chegadas_chile":21186.0,"chegadas_uru":8010.0,"chegadas_eua":11939.0,"usd_brl":5.3229,"eur_brl":6.2458,"ars_brl":0.004,"clp_brl":0.0056,"uyu_brl":0.1357,"brent_close":68.12,"brent_high":72.0,"qav":2.024,"voos":1291.0,"assentos":284973.0,"rotas":26.0},{"mes":"2025-09","chegadas_br":451358.0,"chegadas_rj":156947.0,"chegadas_europa":26665.0,"chegadas_arg":52024.0,"chegadas_chile":29913.0,"chegadas_uru":9408.0,"chegadas_eua":11141.0,"usd_brl":5.3744,"eur_brl":6.1997,"ars_brl":0.0039,"clp_brl":0.0055,"uyu_brl":0.1336,"brent_close":67.02,"brent_high":70.76,"qav":2.089,"voos":1268.0,"assentos":281271.0,"rotas":25.0},{"mes":"2025-10","chegadas_br":464307.0,"chegadas_rj":164496.0,"chegadas_europa":34016.0,"chegadas_arg":55619.0,"chegadas_chile":26866.0,"chegadas_uru":9057.0,"chegadas_eua":12411.0,"usd_brl":5.3368,"eur_brl":6.1885,"ars_brl":0.0037,"clp_brl":0.0057,"uyu_brl":0.1349,"brent_close":64.77,"brent_high":66.12,"qav":2.154,"voos":1319.0,"assentos":295071.0,"rotas":23.0},{"mes":"2025-11","chegadas_br":541245.0,"chegadas_rj":172704.0,"chegadas_europa":43527.0,"chegadas_arg":53776.0,"chegadas_chile":25779.0,"chegadas_uru":7146.0,"chegadas_eua":16024.0,"usd_brl":5.4778,"eur_brl":6.4338,"ars_brl":0.0037,"clp_brl":0.0057,"uyu_brl":0.1352,"brent_close":62.38,"brent_high":64.98,"qav":2.258,"voos":1348.0,"assentos":308330.0,"rotas":23.0},{"mes":"2025-12","chegadas_br":629952.0,"chegadas_rj":212253.0,"chegadas_europa":49710.0,"chegadas_arg":72706.0,"chegadas_chile":30351.0,"chegadas_uru":6438.0,"chegadas_eua":24356.0,"usd_brl":5.2576,"eur_brl":6.2303,"ars_brl":0.0038,"clp_brl":0.0061,"uyu_brl":0.1402,"brent_close":60.49,"brent_high":63.68,"qav":1.965,"voos":1565.0,"assentos":354779.0,"rotas":32.0},{"mes":"2026-01","chegadas_br":742846.0,"chegadas_rj":274412.0,"chegadas_europa":38121.0,"chegadas_arg":126026.0,"chegadas_chile":50536.0,"chegadas_uru":9503.0,"chegadas_eua":17824.0,"usd_brl":5.1305,"eur_brl":6.0612,"ars_brl":0.0036,"clp_brl":0.006,"uyu_brl":0.1355,"brent_close":70.69,"brent_high":71.89,"qav":2.031,"voos":1923.0,"assentos":426156.0,"rotas":30.0},{"mes":"2026-02","chegadas_br":835464.0,"chegadas_rj":295716.0,"chegadas_europa":64480.0,"chegadas_arg":99194.0,"chegadas_chile":56055.0,"chegadas_uru":8362.0,"chegadas_eua":27954.0,"usd_brl":5.1819,"eur_brl":5.9865,"ars_brl":0.0037,"clp_brl":0.0059,"uyu_brl":0.1335,"brent_close":72.48,"brent_high":73.0,"qav":2.262,"voos":1806.0,"assentos":404149.0,"rotas":35.0},{"mes":"2026-03","chegadas_br":750934.0,"chegadas_rj":273487.0,"chegadas_europa":55278.0,"chegadas_arg":99546.0,"chegadas_chile":36813.0,"chegadas_uru":11628.0,"chegadas_eua":28061.0,"usd_brl":4.9546,"eur_brl":5.8127,"ars_brl":0.0037,"clp_brl":0.0056,"uyu_brl":0.1275,"brent_close":118.35,"brent_high":119.5,"qav":3.697,"voos":1714.0,"assentos":381855.0,"rotas":29.0},{"mes":"2026-04","chegadas_br":455573.0,"chegadas_rj":177998.0,"chegadas_europa":38605.0,"chegadas_arg":56058.0,"chegadas_chile":23028.0,"chegadas_uru":7534.0,"chegadas_eua":17860.0,"usd_brl":5.0368,"eur_brl":5.873,"ars_brl":0.0036,"clp_brl":0.0055,"uyu_brl":0.123,"brent_close":114.01,"brent_high":126.41,"qav":3.928,"voos":1328.0,"assentos":295263.0,"rotas":35.0}],"correlation_matrix":{"chegadas_rj":{"usd_brl":-0.067,"eur_brl":-0.108,"ars_brl":-0.34,"clp_brl":-0.583,"uyu_brl":0.261,"brent_close":0.19,"qav":0.238,"voos":0.944,"assentos":0.947,"rotas":0.781},"chegadas_europa":{"usd_brl":-0.24,"eur_brl":-0.294,"ars_brl":-0.186,"clp_brl":-0.681,"uyu_brl":0.08,"brent_close":0.164,"qav":0.227,"voos":0.911,"assentos":0.913,"rotas":0.837},"chegadas_arg":{"usd_brl":-0.071,"eur_brl":-0.09,"ars_brl":-0.29,"clp_brl":-0.515,"uyu_brl":0.247,"brent_close":0.166,"qav":0.214,"voos":0.905,"assentos":0.905,"rotas":0.721},"chegadas_chile":{"usd_brl":0.111,"eur_brl":0.046,"ars_brl":-0.469,"clp_brl":-0.467,"uyu_brl":0.399,"brent_close":0.184,"qav":0.229,"voos":0.851,"assentos":0.86,"rotas":0.662},"chegadas_uru":{"usd_brl":0.091,"eur_brl":0.11,"ars_brl":-0.383,"clp_brl":-0.426,"uyu_brl":0.345,"brent_close":0.069,"qav":0.077,"voos":0.822,"assentos":0.83,"rotas":0.603},"chegadas_eua":{"usd_brl":0.045,"eur_brl":-0.05,"ars_brl":-0.428,"clp_brl":-0.522,"uyu_brl":0.331,"brent_close":0.269,"qav":0.298,"voos":0.837,"assentos":0.849,"rotas":0.691},"chegadas_br":{"usd_brl":-0.168,"eur_brl":-0.224,"ars_brl":-0.273,"clp_brl":-0.648,"uyu_brl":0.187,"brent_close":0.209,"qav":0.26,"voos":0.96,"assentos":0.961,"rotas":0.833}},"ccf_pairs":{"usd_eua":[{"lag":-12,"r":0.218},{"lag":-11,"r":0.176},{"lag":-10,"r":0.162},{"lag":-9,"r":0.154},{"lag":-8,"r":0.147},{"lag":-7,"r":0.124},{"lag":-6,"r":0.113},{"lag":-5,"r":0.121},{"lag":-4,"r":0.129},{"lag":-3,"r":0.091},{"lag":-2,"r":0.06},{"lag":-1,"r":0.041},{"lag":0,"r":0.045},{"lag":1,"r":0.043},{"lag":2,"r":0.04},{"lag":3,"r":0.038},{"lag":4,"r":0.039},{"lag":5,"r":0.042},{"lag":6,"r":0.052},{"lag":7,"r":0.081},{"lag":8,"r":0.081},{"lag":9,"r":0.072},{"lag":10,"r":0.065},{"lag":11,"r":0.084},{"lag":12,"r":0.074}],"eur_europa":[{"lag":-12,"r":-0.033},{"lag":-11,"r":-0.083},{"lag":-10,"r":-0.111},{"lag":-9,"r":-0.123},{"lag":-8,"r":-0.145},{"lag":-7,"r":-0.166},{"lag":-6,"r":-0.198},{"lag":-5,"r":-0.194},{"lag":-4,"r":-0.198},{"lag":-3,"r":-0.236},{"lag":-2,"r":-0.293},{"lag":-1,"r":-0.31},{"lag":0,"r":-0.294},{"lag":1,"r":-0.288},{"lag":2,"r":-0.282},{"lag":3,"r":-0.268},{"lag":4,"r":-0.24},{"lag":5,"r":-0.214},{"lag":6,"r":-0.186},{"lag":7,"r":-0.137},{"lag":8,"r":-0.117},{"lag":9,"r":-0.095},{"lag":10,"r":-0.062},{"lag":11,"r":-0.005},{"lag":12,"r":0.05}],"ars_arg":[{"lag":-12,"r":-0.454},{"lag":-11,"r":-0.422},{"lag":-10,"r":-0.412},{"lag":-9,"r":-0.404},{"lag":-8,"r":-0.397},{"lag":-7,"r":-0.406},{"lag":-6,"r":-0.408},{"lag":-5,"r":-0.423},{"lag":-4,"r":-0.43},{"lag":-3,"r":-0.415},{"lag":-2,"r":-0.38},{"lag":-1,"r":-0.347},{"lag":0,"r":-0.29},{"lag":1,"r":-0.277},{"lag":2,"r":-0.254},{"lag":3,"r":-0.232},{"lag":4,"r":-0.221},{"lag":5,"r":-0.222},{"lag":6,"r":-0.218},{"lag":7,"r":-0.223},{"lag":8,"r":-0.209},{"lag":9,"r":-0.188},{"lag":10,"r":-0.162},{"lag":11,"r":-0.151},{"lag":12,"r":-0.132}],"clp_chile":[{"lag":-12,"r":-0.3},{"lag":-11,"r":-0.326},{"lag":-10,"r":-0.343},{"lag":-9,"r":-0.345},{"lag":-8,"r":-0.374},{"lag":-7,"r":-0.39},{"lag":-6,"r":-0.386},{"lag":-5,"r":-0.408},{"lag":-4,"r":-0.423},{"lag":-3,"r":-0.429},{"lag":-2,"r":-0.417},{"lag":-1,"r":-0.436},{"lag":0,"r":-0.467},{"lag":1,"r":-0.472},{"lag":2,"r":-0.461},{"lag":3,"r":-0.462},{"lag":4,"r":-0.474},{"lag":5,"r":-0.481},{"lag":6,"r":-0.465},{"lag":7,"r":-0.44},{"lag":8,"r":-0.427},{"lag":9,"r":-0.402},{"lag":10,"r":-0.355},{"lag":11,"r":-0.308},{"lag":12,"r":-0.253}],"uyu_uru":[{"lag":-12,"r":0.584},{"lag":-11,"r":0.585},{"lag":-10,"r":0.615},{"lag":-9,"r":0.595},{"lag":-8,"r":0.582},{"lag":-7,"r":0.563},{"lag":-6,"r":0.556},{"lag":-5,"r":0.539},{"lag":-4,"r":0.526},{"lag":-3,"r":0.5},{"lag":-2,"r":0.465},{"lag":-1,"r":0.408},{"lag":0,"r":0.345},{"lag":1,"r":0.337},{"lag":2,"r":0.329},{"lag":3,"r":0.343},{"lag":4,"r":0.319},{"lag":5,"r":0.3},{"lag":6,"r":0.234},{"lag":7,"r":0.23},{"lag":8,"r":0.218},{"lag":9,"r":0.206},{"lag":10,"r":0.16},{"lag":11,"r":0.137},{"lag":12,"r":0.101}],"brent_rj":[{"lag":-12,"r":0.457},{"lag":-11,"r":0.446},{"lag":-10,"r":0.43},{"lag":-9,"r":0.412},{"lag":-8,"r":0.397},{"lag":-7,"r":0.379},{"lag":-6,"r":0.345},{"lag":-5,"r":0.288},{"lag":-4,"r":0.228},{"lag":-3,"r":0.183},{"lag":-2,"r":0.153},{"lag":-1,"r":0.158},{"lag":0,"r":0.19},{"lag":1,"r":0.179},{"lag":2,"r":0.132},{"lag":3,"r":0.06},{"lag":4,"r":-0.013},{"lag":5,"r":-0.067},{"lag":6,"r":-0.107},{"lag":7,"r":-0.175},{"lag":8,"r":-0.241},{"lag":9,"r":-0.313},{"lag":10,"r":-0.367},{"lag":11,"r":-0.358},{"lag":12,"r":-0.316}],"qav_rj":[{"lag":-12,"r":0.417},{"lag":-11,"r":0.397},{"lag":-10,"r":0.38},{"lag":-9,"r":0.365},{"lag":-8,"r":0.347},{"lag":-7,"r":0.332},{"lag":-6,"r":0.321},{"lag":-5,"r":0.302},{"lag":-4,"r":0.278},{"lag":-3,"r":0.249},{"lag":-2,"r":0.221},{"lag":-1,"r":0.218},{"lag":0,"r":0.238},{"lag":1,"r":0.226},{"lag":2,"r":0.174},{"lag":3,"r":0.101},{"lag":4,"r":0.022},{"lag":5,"r":-0.034},{"lag":6,"r":-0.07},{"lag":7,"r":-0.117},{"lag":8,"r":-0.163},{"lag":9,"r":-0.218},{"lag":10,"r":-0.282},{"lag":11,"r":-0.3},{"lag":12,"r":-0.282}],"assentos_rj":[{"lag":-12,"r":0.604},{"lag":-11,"r":0.609},{"lag":-10,"r":0.587},{"lag":-9,"r":0.577},{"lag":-8,"r":0.598},{"lag":-7,"r":0.63},{"lag":-6,"r":0.657},{"lag":-5,"r":0.667},{"lag":-4,"r":0.698},{"lag":-3,"r":0.757},{"lag":-2,"r":0.85},{"lag":-1,"r":0.919},{"lag":0,"r":0.947},{"lag":1,"r":0.894},{"lag":2,"r":0.816},{"lag":3,"r":0.761},{"lag":4,"r":0.727},{"lag":5,"r":0.703},{"lag":6,"r":0.675},{"lag":7,"r":0.635},{"lag":8,"r":0.618},{"lag":9,"r":0.627},{"lag":10,"r":0.676},{"lag":11,"r":0.705},{"lag":12,"r":0.687}],"rotas_rj":[{"lag":-12,"r":0.394},{"lag":-11,"r":0.43},{"lag":-10,"r":0.443},{"lag":-9,"r":0.453},{"lag":-8,"r":0.467},{"lag":-7,"r":0.476},{"lag":-6,"r":0.483},{"lag":-5,"r":0.491},{"lag":-4,"r":0.519},{"lag":-3,"r":0.588},{"lag":-2,"r":0.67},{"lag":-1,"r":0.733},{"lag":0,"r":0.781},{"lag":1,"r":0.766},{"lag":2,"r":0.711},{"lag":3,"r":0.669},{"lag":4,"r":0.624},{"lag":5,"r":0.582},{"lag":6,"r":0.532},{"lag":7,"r":0.492},{"lag":8,"r":0.46},{"lag":9,"r":0.481},{"lag":10,"r":0.514},{"lag":11,"r":0.541},{"lag":12,"r":0.518}],"usd_rj":[{"lag":-12,"r":0.219},{"lag":-11,"r":0.177},{"lag":-10,"r":0.158},{"lag":-9,"r":0.139},{"lag":-8,"r":0.123},{"lag":-7,"r":0.107},{"lag":-6,"r":0.089},{"lag":-5,"r":0.09},{"lag":-4,"r":0.087},{"lag":-3,"r":0.05},{"lag":-2,"r":-0.001},{"lag":-1,"r":-0.045},{"lag":0,"r":-0.067},{"lag":1,"r":-0.074},{"lag":2,"r":-0.081},{"lag":3,"r":-0.092},{"lag":4,"r":-0.095},{"lag":5,"r":-0.099},{"lag":6,"r":-0.085},{"lag":7,"r":-0.068},{"lag":8,"r":-0.076},{"lag":9,"r":-0.082},{"lag":10,"r":-0.08},{"lag":11,"r":-0.065},{"lag":12,"r":-0.038}],"eur_rj":[{"lag":-12,"r":0.082},{"lag":-11,"r":0.057},{"lag":-10,"r":0.051},{"lag":-9,"r":0.042},{"lag":-8,"r":0.033},{"lag":-7,"r":0.018},{"lag":-6,"r":-0.001},{"lag":-5,"r":0.001},{"lag":-4,"r":0.0},{"lag":-3,"r":-0.028},{"lag":-2,"r":-0.068},{"lag":-1,"r":-0.102},{"lag":0,"r":-0.108},{"lag":1,"r":-0.104},{"lag":2,"r":-0.104},{"lag":3,"r":-0.105},{"lag":4,"r":-0.092},{"lag":5,"r":-0.079},{"lag":6,"r":-0.057},{"lag":7,"r":-0.034},{"lag":8,"r":-0.026},{"lag":9,"r":-0.011},{"lag":10,"r":0.009},{"lag":11,"r":0.036},{"lag":12,"r":0.076}]},"ccf_ci":0.196,"lags":[{"independente":"C\u00e2mbio USD/BRL","dependente":"Chegadas EUA \u2014 RJ","r":0.246,"lag":4,"sinal":"\u2795 Positivo","interpretacao":"D\u00f3lar mais caro reduz visitantes americanos ap\u00f3s X meses.","alerta":null},{"independente":"C\u00e2mbio EUR/BRL","dependente":"Chegadas Europa \u2014 RJ","r":0.215,"lag":3,"sinal":"\u2795 Positivo","interpretacao":"Euro valorizado incentiva turismo europeu ao Brasil ap\u00f3s X meses.","alerta":null},{"independente":"C\u00e2mbio ARS/BRL","dependente":"Chegadas Argentina \u2014 RJ","r":0.134,"lag":8,"sinal":"\u2795 Positivo","interpretacao":"\u26a0 C\u00e2mbio inst\u00e1vel \u2014 sinal e defasagem devem ser interpretados com cautela.","alerta":"atipico"},{"independente":"C\u00e2mbio CLP/BRL","dependente":"Chegadas Chile \u2014 RJ","r":-0.14,"lag":7,"sinal":"\u2796 Negativo","interpretacao":"Peso chileno valorizado pode aumentar turismo, mas impacto moderado dado dist\u00e2ncia curta.","alerta":"fraco"},{"independente":"C\u00e2mbio UYU/BRL","dependente":"Chegadas Uruguai \u2014 RJ","r":-0.191,"lag":-6,"sinal":"\u2796 Negativo","interpretacao":"Peso uruguaio valorizado pode incentivar viagens, mas influ\u00eancia \u00e9 moderada.","alerta":null},{"independente":"Brent Fechamento","dependente":"Chegadas Geral RJ","r":-0.263,"lag":1,"sinal":"\u2796 Negativo","interpretacao":"Petr\u00f3leo mais caro reduz chegadas internacionais ao RJ ap\u00f3s X meses.","alerta":null},{"independente":"QAV / Jet Fuel","dependente":"Chegadas Geral RJ","r":-0.248,"lag":1,"sinal":"\u2796 Negativo","interpretacao":"Combust\u00edvel mais caro tende a reduzir chegadas internacionais ao RJ.","alerta":null},{"independente":"Assentos \u2014 Gale\u00e3o","dependente":"Chegadas Geral RJ","r":0.356,"lag":-12,"sinal":"\u2795 Positivo","interpretacao":"Mais assentos internacionais dispon\u00edveis est\u00e1 associado a maiores chegadas ao RJ.","alerta":"espurio"},{"independente":"Rotas \u2014 Gale\u00e3o","dependente":"Chegadas Geral RJ","r":-0.258,"lag":1,"sinal":"\u2796 Negativo","interpretacao":"Mais rotas internacionais conectadas ao Gale\u00e3o aumenta as chegadas ao RJ.","alerta":null},{"independente":"C\u00e2mbio USD/BRL","dependente":"Chegadas Geral RJ","r":0.232,"lag":4,"sinal":"\u2795 Positivo","interpretacao":"D\u00f3lar alto reduz custo do Brasil para turistas internacionais em geral.","alerta":null},{"independente":"C\u00e2mbio EUR/BRL","dependente":"Chegadas Geral RJ","r":0.244,"lag":4,"sinal":"\u2795 Positivo","interpretacao":"Euro valorizado frente ao real torna o Brasil mais barato para europeus.","alerta":null}],"last_update":"2026-04","avg_precovid_rj":101930.0,"ccf_domain":1.07}</script>
+<div id="root"></div><script>
+
+const {
+  useState,
+  useEffect,
+  useRef,
+  useMemo
+} = React;
+const {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Brush,
+  ReferenceArea,
+  ReferenceLine,
+  Cell
+} = Recharts;
+const DATA = JSON.parse(document.getElementById('md').textContent);
+const {
+  series,
+  correlation_matrix,
+  ccf_pairs,
+  ccf_ci,
+  lags,
+  last_update,
+  avg_precovid_rj
+} = DATA;
+const C = {
+  primary: '#1B3A5C',
+  primaryL: '#2A5580',
+  accent: '#00A896',
+  accentD: '#007A6E',
+  warm: '#F4845F',
+  warmD: '#D4603A',
+  amber: '#F59E0B',
+  purple: '#8B5CF6',
+  green: '#10B981',
+  bg: '#F8FAFC',
+  surface: '#FFFFFF',
+  text: '#1A202C',
+  muted: '#718096',
+  border: '#E2E8F0',
+  covidBg: 'rgba(255,180,80,0.12)'
+};
+const MES = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+const fmtM = ym => {
+  if (!ym) return '';
+  const [y, m] = ym.split('-');
+  return MES[+m - 1] + '/' + y.slice(2);
+};
+const fmtN = (n, d = 0) => n == null || isNaN(n) ? '—' : new Intl.NumberFormat('pt-BR', {
+  minimumFractionDigits: d,
+  maximumFractionDigits: d
+}).format(n);
+const pct = (a, b) => !b || b === 0 ? null : (a - b) / b * 100;
+const corrColor = r => {
+  if (r == null || isNaN(r)) return '#F8FAFC';
+  const ab = Math.min(Math.abs(r), 1),
+    al = 0.12 + ab * 0.82;
+  return r > 0.03 ? `rgba(0,168,150,${al.toFixed(2)})` : r < -0.03 ? `rgba(244,132,95,${al.toFixed(2)})` : '#F0F4F8';
+};
+const corrTxt = r => Math.abs(r || 0) > 0.42 ? '#fff' : C.text;
+function computeInsights() {
+  if (!series || series.length < 14) return [];
+  const last = series[series.length - 1],
+    yoy = series.length >= 13 ? series[series.length - 13] : null;
+  const ins = [];
+  const rp = pct(last.chegadas_rj, avg_precovid_rj);
+  if (rp !== null) ins.push({
+    type: rp >= 0 ? 'positive' : 'warning',
+    text: rp >= 0 ? `As chegadas ao Rio estão ${fmtN(rp, 1)}% acima da média pré-COVID (2018–2019) — recuperação completa do turismo internacional.` : `As chegadas ao Rio ainda estão ${fmtN(Math.abs(rp), 1)}% abaixo da média pré-COVID. A recuperação total ainda não foi alcançada.`
+  });
+  if (yoy && yoy.chegadas_rj > 0) {
+    const yp = pct(last.chegadas_rj, yoy.chegadas_rj);
+    if (yp !== null) ins.push({
+      type: yp >= 0 ? 'positive' : 'negative',
+      text: `${yp >= 0 ? 'Crescimento' : 'Queda'} de ${fmtN(Math.abs(yp), 1)}% em relação ao mesmo período do ano anterior (${fmtM(yoy.mes)}).`
+    });
+  }
+  const orgs = [{
+    k: 'chegadas_arg',
+    l: 'Argentina'
+  }, {
+    k: 'chegadas_europa',
+    l: 'Europa'
+  }, {
+    k: 'chegadas_chile',
+    l: 'Chile'
+  }, {
+    k: 'chegadas_eua',
+    l: 'EUA'
+  }, {
+    k: 'chegadas_uru',
+    l: 'Uruguai'
+  }];
+  const dom = orgs.reduce((mx, o) => (last[o.k] || 0) > (last[mx.k] || 0) ? o : mx, orgs[0]);
+  const dp = last.chegadas_rj > 0 ? (last[dom.k] || 0) / last.chegadas_rj * 100 : 0;
+  ins.push({
+    type: 'neutral',
+    text: `${dom.l} é a maior origem com ${fmtN(last[dom.k])} turistas — ${fmtN(dp, 1)}% do total no Rio em ${fmtM(last.mes)}.`
+  });
+  if (yoy && yoy.usd_brl) {
+    const uc = pct(last.usd_brl, yoy.usd_brl);
+    if (uc !== null && Math.abs(uc) > 3) ins.push({
+      type: uc > 0 ? 'positive' : 'warning',
+      text: `Dólar ${fmtN(Math.abs(uc), 1)}% ${uc > 0 ? 'mais caro' : 'mais barato'} que em ${fmtM(yoy.mes)}. Um real desvalorizado ${uc > 0 ? 'pode estimular chegadas de americanos' : 'pode reduzir o interesse do turista americano'} nos próximos 3–4 meses (lag CCF).`
+    });
+  }
+  const r6 = series.slice(-7, -1);
+  if (r6.length >= 3) {
+    const ab = r6.reduce((s, r) => s + (r.brent_close || 0), 0) / r6.length,
+      bc = pct(last.brent_close, ab);
+    if (bc !== null && Math.abs(bc) > 5) ins.push({
+      type: bc > 0 ? 'warning' : 'positive',
+      text: `Brent a US$${fmtN(last.brent_close, 0)}/barril — ${fmtN(Math.abs(bc), 1)}% ${bc > 0 ? 'acima' : 'abaixo'} da média dos últimos 6 meses. ${bc > 0 ? 'Pode pressionar tarifas aéreas e reduzir' : 'Favorece custos aéreos menores, potencialmente estimulando'} as chegadas internacionais.`
+    });
+  }
+  return ins;
+}
+function KPICard({
+  label,
+  value,
+  delta,
+  sub,
+  accent
+}) {
+  const pos = delta === null ? null : delta >= 0;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      padding: 16,
+      boxShadow: '0 1px 4px rgba(0,0,0,.06)',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 4,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      fontWeight: 600,
+      textTransform: 'uppercase',
+      letterSpacing: '0.05em',
+      color: C.muted,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap'
+    }
+  }, label), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 24,
+      fontWeight: 700,
+      color: accent || C.primary,
+      lineHeight: 1.1
+    }
+  }, value), delta !== null && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 12,
+      fontWeight: 600,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 4,
+      color: pos ? C.accent : C.warm
+    }
+  }, /*#__PURE__*/React.createElement("span", null, pos ? '▲' : '▼'), /*#__PURE__*/React.createElement("span", null, fmtN(Math.abs(delta), 1), "%"), sub && /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.muted,
+      fontWeight: 400
+    }
+  }, sub)), delta === null && sub && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 12,
+      color: C.muted
+    }
+  }, sub));
+}
+function InsightCard({
+  insights
+}) {
+  if (!insights?.length) return null;
+  const cfg = {
+    positive: {
+      bg: 'rgba(0,168,150,.09)',
+      bdr: C.accent,
+      ic: '↑'
+    },
+    negative: {
+      bg: 'rgba(244,132,95,.09)',
+      bdr: C.warm,
+      ic: '↓'
+    },
+    warning: {
+      bg: 'rgba(245,158,11,.09)',
+      bdr: C.amber,
+      ic: '⚠'
+    },
+    neutral: {
+      bg: 'rgba(27,58,92,.07)',
+      bdr: C.primary,
+      ic: '●'
+    }
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      boxShadow: '0 1px 4px rgba(0,0,0,.06)',
+      padding: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 13,
+      fontWeight: 700,
+      color: C.primary
+    }
+  }, "Contexto do mês"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      color: C.muted
+    }
+  }, "gerado automaticamente com base nos dados")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 8
+    }
+  }, insights.map((ins, i) => {
+    const c = cfg[ins.type] || cfg.neutral;
+    return /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        display: 'flex',
+        gap: 12,
+        alignItems: 'flex-start',
+        padding: '10px 12px',
+        borderRadius: 8,
+        background: c.bg,
+        borderLeft: `3px solid ${c.bdr}`
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontWeight: 800,
+        color: c.bdr,
+        marginTop: 1,
+        flexShrink: 0
+      }
+    }, c.ic), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 13,
+        color: '#374151',
+        lineHeight: 1.65
+      }
+    }, ins.text));
+  })));
+}
+const GROUPS = {
+  chegadas: {
+    label: 'Chegadas',
+    single: true,
+    series: [{
+      k: 'chegadas_rj',
+      l: 'Rio de Janeiro',
+      c: C.primary
+    }, {
+      k: 'chegadas_br',
+      l: 'Brasil (geral)',
+      c: C.primaryL
+    }, {
+      k: 'chegadas_arg',
+      l: 'Argentina',
+      c: C.warm
+    }, {
+      k: 'chegadas_europa',
+      l: 'Europa',
+      c: C.accent
+    }, {
+      k: 'chegadas_chile',
+      l: 'Chile',
+      c: C.purple
+    }, {
+      k: 'chegadas_eua',
+      l: 'EUA',
+      c: C.amber
+    }, {
+      k: 'chegadas_uru',
+      l: 'Uruguai',
+      c: C.green
+    }]
+  },
+  cambio: {
+    label: 'Câmbio',
+    single: true,
+    series: [{
+      k: 'usd_brl',
+      l: 'USD/BRL',
+      c: C.amber
+    }, {
+      k: 'eur_brl',
+      l: 'EUR/BRL',
+      c: C.accent
+    }, {
+      k: 'ars_brl',
+      l: 'ARS/BRL',
+      c: C.warm
+    }, {
+      k: 'clp_brl',
+      l: 'CLP/BRL',
+      c: C.purple
+    }, {
+      k: 'uyu_brl',
+      l: 'UYU/BRL',
+      c: C.green
+    }]
+  },
+  custo: {
+    label: 'Custo Operacional',
+    single: false,
+    series: [{
+      k: 'brent_close',
+      l: 'Brent (USD/barril)',
+      c: C.primary
+    }, {
+      k: 'qav',
+      l: 'QAV (USD/galão)',
+      c: C.warm
+    }]
+  },
+  oferta: {
+    label: 'Oferta Aérea — Galeão',
+    single: true,
+    series: [{
+      k: 'voos',
+      l: 'Voos',
+      c: C.accent
+    }, {
+      k: 'assentos',
+      l: 'Assentos',
+      c: C.primary
+    }, {
+      k: 'rotas',
+      l: 'Rotas',
+      c: C.warm
+    }]
+  }
+};
+const EVTS = {
+  '2020-03': '🦠 COVID-19: fechamento de fronteiras internacionais.',
+  '2020-04': '🦠 COVID-19: mínimo histórico — praticamente zero chegadas.',
+  '2021-11': '✈️ Reabertura gradual das fronteiras internacionais.',
+  '2022-02': '⚔️ Guerra Ucrânia-Rússia — choque no Brent e incerteza global.',
+  '2022-07': '📈 Retomada acelerada: demanda represada pós-pandemia.',
+  '2023-12': '🇦🇷 Argentina: colapso do ARS após eleição de Milei — hiperinflação.',
+  '2025-01': '⚠️ Tensão EUA-Irã: ataques no Médio Oriente — volatilidade do petróleo.',
+  '2026-03': '🛢️ Brent acima de US$118 — maior nível desde mar/2022.'
+};
+const GEO_MARKERS = [
+  {mes:'2022-02', l:'Guerra Ucrânia', c:'#DC2626'},
+  {mes:'2025-01', l:'Tensão EUA-Irã', c:'#D97706'},
+  {mes:'2026-03', l:'Brent US$118', c:'#7C3AED'},
+];
+const ARS_MARKERS = [
+  {mes:'2019-08', l:'Crise Macri ARS', c:'#EA580C'},
+  {mes:'2023-12', l:'Hiperinflação', c:'#DC2626'},
+];
+function detectAnomalies(key) {
+  const covidMes = new Set(['2020-03','2020-04','2020-05','2020-06','2020-07','2020-08','2020-09','2020-10','2020-11','2020-12','2021-01','2021-02','2021-03','2021-04','2021-05','2021-06','2021-07','2021-08','2021-09','2021-10','2021-11','2021-12']);
+  const filtered = series.filter(d => !covidMes.has(d.mes) && d[key] != null && !isNaN(d[key]));
+  if (filtered.length < 5) return [];
+  const vals = filtered.map(d => d[key]);
+  const mean = vals.reduce((a,b)=>a+b,0)/vals.length;
+  const std = Math.sqrt(vals.reduce((a,b)=>a+(b-mean)**2,0)/vals.length);
+  if (std < 1e-9) return [];
+  return series.filter(d => !covidMes.has(d.mes) && d[key] != null && Math.abs((d[key]-mean)/std) > 2.8)
+    .sort((a,b)=>Math.abs((b[key]-mean)/std)-Math.abs((a[key]-mean)/std))
+    .slice(0,3);
+}
+const CORR_INSIGHT = {
+  usd_brl: 'Dólar mais caro significa que o turista americano (ou qualquer origem que usa dólar como referência) precisa de menos dólares para viajar ao Brasil — o país fica "mais barato" para ele. Essa correlação captura esse efeito: real desvalorizado pode estimular chegadas, especialmente de origens de renda alta. O efeito é moderado porque desvalorização do real também pode sinalizar instabilidade econômica, que contrabalança o atrativo.',
+  eur_brl: 'Euro valorizado amplia o poder de compra do turista europeu no Brasil: hotel, restaurante e passeios custam menos em euros. É um incentivo direto à viagem. O efeito tende a ser mais robusto para europeus com renda mais alta, onde o custo da passagem já é o principal obstáculo — uma vez superado, a vantagem cambial acelera a decisão.',
+  ars_brl: 'Este é o par mais complexo da análise. Em teoria, peso mais forte → Brasil mais barato para argentinos → mais chegadas. Na prática, crises cambiais na Argentina (hiperinflação de 2019 e 2023, controles de capital) fizeram o ARS/BRL desabar enquanto as chegadas cresciam — possivelmente por motivos não-cambiais, como diferença de custo de vida e demanda reprimida pós-COVID. O sinal e a defasagem devem ser interpretados com cautela extra.',
+  clp_brl: 'Peso chileno mais forte torna o Brasil relativamente mais acessível para chilenos. A correlação é moderada porque a proximidade geográfica reduz o peso do câmbio na decisão de viagem — o custo da passagem representa parcela menor do orçamento. Fatores como oferta de voos diretos e sazonalidade tendem a ser mais determinantes para essa origem.',
+  uyu_brl: 'Peso uruguaio valorizado favorece viagens ao Brasil — lógica similar às demais origens da América do Sul. O efeito é limitado pelo volume relativamente menor de visitantes e pelo fato de que o Uruguai é um país próximo, onde o câmbio pesa menos na decisão de viagem do que em origens intercontinentais.',
+  brent_close: 'O petróleo é a matéria-prima central para a aviação. Brent mais caro → custo de querosene (QAV) sobe → companhias aéreas repassam em tarifas ou reduzem capacidade → turistas pagam mais ou não encontram voos → chegadas caem. O lag identifica em quantos meses esse efeito se materializa nas chegadas ao Rio.',
+  brent_high: 'A máxima diária do Brent captura picos de volatilidade — momentos de choque externo (guerra, corte de produção da OPEP) que criam incerteza no planejamento das aéreas. Efeito econômico similar ao fechamento, mas a máxima é mais sensível a choques abruptos do que à média do mês.',
+  qav: 'QAV (querosene de aviação) é o custo operacional mais relevante das aéreas — representa 25-30% dos custos totais. Quando o QAV sobe, as companhias aéreas podem reduzir rotas, aumentar tarifas ou ambos. Isso afeta diretamente a acessibilidade do Rio como destino internacional.',
+  voos: 'Número de voos é a variável de oferta mais direta: sem voo, o turista não chega. A correlação positiva e forte é esperada — quando há mais operações internacionais no Galeão, há mais turistas chegando. Essa variável capta tanto expansão de novas rotas quanto aumento de frequências em rotas existentes.',
+  assentos: 'Assentos disponíveis nos voos internacionais que chegam ao Galeão é a variável de capacidade instalada. Mais assentos = mais turistas podem viajar. A relação é real e direta: as aéreas colocam capacidade e os turistas a ocupam. Isso não é coincidência estatística — é a estrutura física do turismo aéreo.',
+  rotas: 'Número de rotas internacionais indica quantas origens estão conectadas ao Galeão. Mais rotas = mais mercados emissores ativados = mais possibilidade de chegadas diversificadas. A expansão de rotas tende a gerar demanda nos mercados recém-conectados ao longo dos meses seguintes.',
+};
+function ChartTip({
+  active,
+  payload,
+  label
+}) {
+  if (!active || !payload?.length) return null;
+  const ev = EVTS[label];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 10,
+      padding: '10px 14px',
+      boxShadow: '0 4px 12px rgba(0,0,0,.1)',
+      fontSize: 13,
+      maxWidth: 260
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600,
+      marginBottom: 4,
+      color: C.text
+    }
+  }, fmtM(label)), payload.map((p, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 6
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 8,
+      height: 8,
+      borderRadius: '50%',
+      background: p.color,
+      display: 'inline-block',
+      flexShrink: 0
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.muted
+    }
+  }, p.name, ":"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 600
+    }
+  }, (v => v == null || isNaN(v) ? '—' : Math.abs(v) < 0.01 ? v.toFixed(4) : Math.abs(v) < 0.1 ? v.toFixed(3) : Math.abs(v) < 1000 ? v.toFixed(2) : fmtN(v))(p.value)))), ev && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 8,
+      paddingTop: 8,
+      fontSize: 11,
+      color: '#92400E',
+      fontStyle: 'italic',
+      borderTop: '1px solid #FDE68A'
+    }
+  }, ev));
+}
+function MainChart({
+  grp,
+  active,
+  setActive
+}) {
+  const g = GROUPS[grp];
+  const isCusto = grp === 'custo';
+  const isCambio = grp === 'cambio';
+  const yFmt = v => {
+    if (isCambio || isCusto) {
+      if (v === 0) return '0';
+      if (Math.abs(v) < 0.01) return v.toFixed(4);
+      if (Math.abs(v) < 0.1) return v.toFixed(3);
+      return v.toFixed(2);
+    }
+    return v >= 1e6 ? (v / 1e6).toFixed(1) + 'M' : v >= 1e3 ? (v / 1e3).toFixed(0) + 'k' : String(v);
+  };
+  const yFmtR = v => v.toFixed(2);
+  return /*#__PURE__*/React.createElement("div", null, g.single && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 8,
+      marginBottom: 16
+    }
+  }, g.series.map(s => /*#__PURE__*/React.createElement("button", {
+    key: s.k,
+    onClick: () => setActive(s.k),
+    style: {
+      padding: '4px 12px',
+      borderRadius: 20,
+      fontSize: 12,
+      fontWeight: 600,
+      cursor: 'pointer',
+      transition: 'all .15s',
+      background: active === s.k ? s.c : 'transparent',
+      color: active === s.k ? '#fff' : s.c,
+      border: `1.5px solid ${s.c}`
+    }
+  }, s.l))), isCusto && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 16,
+      marginBottom: 8,
+      fontSize: 11,
+      color: C.muted
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 5
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 20,
+      height: 3,
+      background: C.primary,
+      display: 'inline-block',
+      borderRadius: 2
+    }
+  }), "Brent — eixo esquerdo (USD/barril)"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 5
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 20,
+      height: 3,
+      background: C.warm,
+      display: 'inline-block',
+      borderRadius: 2
+    }
+  }), "QAV — eixo direito (USD/galão)")), /*#__PURE__*/React.createElement(ResponsiveContainer, {
+    width: "100%",
+    height: 310
+  }, /*#__PURE__*/React.createElement(LineChart, {
+    data: series,
+    margin: {
+      top: 8,
+      right: isCusto ? 48 : 12,
+      left: 0,
+      bottom: 0
+    }
+  }, /*#__PURE__*/React.createElement(CartesianGrid, {
+    strokeDasharray: "3 3",
+    stroke: "#EDF2F7"
+  }), /*#__PURE__*/React.createElement(ReferenceArea, {
+    x1: "2020-03",
+    x2: "2021-12",
+    fill: C.covidBg
+  }), /*#__PURE__*/React.createElement(XAxis, {
+    dataKey: "mes",
+    tickFormatter: fmtM,
+    interval: 11,
+    tick: {
+      fill: C.muted,
+      fontSize: 11
+    },
+    tickLine: false,
+    axisLine: false
+  }), isCusto ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(YAxis, {
+    yAxisId: "L",
+    tick: {
+      fill: C.muted,
+      fontSize: 11
+    },
+    tickLine: false,
+    axisLine: false,
+    tickFormatter: yFmt,
+    width: 52,
+    allowDecimals: true
+  }), /*#__PURE__*/React.createElement(YAxis, {
+    yAxisId: "R",
+    orientation: "right",
+    domain: [0, 6],
+    tick: {
+      fill: C.muted,
+      fontSize: 11
+    },
+    tickLine: false,
+    axisLine: false,
+    tickFormatter: yFmtR,
+    width: 36
+  })) : /*#__PURE__*/React.createElement(YAxis, {
+    tick: {
+      fill: C.muted,
+      fontSize: 11
+    },
+    tickLine: false,
+    axisLine: false,
+    tickFormatter: yFmt,
+    width: isCambio ? 56 : 46,
+    allowDecimals: true
+  }), /*#__PURE__*/React.createElement(Tooltip, {
+    content: /*#__PURE__*/React.createElement(ChartTip, null)
+  }), /*#__PURE__*/React.createElement(Brush, {
+    dataKey: "mes",
+    height: 22,
+    stroke: C.border,
+    fill: "#F8FAFC",
+    tickFormatter: fmtM,
+    travellerWidth: 5
+  }),
+  ...GEO_MARKERS.map(m => /*#__PURE__*/React.createElement(ReferenceLine, {
+    key: m.mes, x: m.mes, stroke: m.c, strokeWidth: 1.5, strokeDasharray: "4 3",
+    label: {value: m.l, position: 'insideTopLeft', fontSize: 9, fill: m.c, fontWeight: 600}
+  })),
+  ...(active === 'ars_brl' ? ARS_MARKERS : []).map(m => /*#__PURE__*/React.createElement(ReferenceLine, {
+    key: m.mes, x: m.mes, stroke: m.c, strokeWidth: 1.5, strokeDasharray: "4 3",
+    label: {value: m.l, position: 'insideTopRight', fontSize: 9, fill: m.c, fontWeight: 600}
+  })),
+  ...detectAnomalies(active).map(d => /*#__PURE__*/React.createElement(ReferenceLine, {
+    key: 'anom_'+d.mes, x: d.mes, stroke: '#8B5CF6', strokeWidth: 1, strokeDasharray: "2 3",
+    label: {value: '↑↓', position: 'insideTop', fontSize: 10, fill: '#8B5CF6'}
+  })),
+  g.single ? /*#__PURE__*/React.createElement(Line, {
+    yAxisId: isCusto ? 'L' : undefined,
+    key: active,
+    type: "monotone",
+    dataKey: active,
+    isAnimationActive: false,
+    name: g.series.find(s => s.k === active)?.l,
+    stroke: g.series.find(s => s.k === active)?.c || C.primary,
+    strokeWidth: 2.5,
+    dot: false,
+    connectNulls: true
+  }) : g.series.map(s => {
+    const yId = isCusto ? s.k === 'qav' ? 'R' : 'L' : undefined;
+    return /*#__PURE__*/React.createElement(Line, {
+      yAxisId: yId,
+      key: s.k,
+      type: "monotone",
+      dataKey: s.k,
+      name: s.l,
+      stroke: s.c,
+      strokeWidth: 1.8,
+      dot: false,
+      isAnimationActive: false,
+      connectNulls: true
+    });
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+      marginTop: 8
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 32,
+      height: 6,
+      background: 'rgba(255,180,80,.45)',
+      borderRadius: 3,
+      display: 'inline-block'
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      color: C.muted
+    }
+  }, "Período COVID-19 (Mar/2020 – Dez/2021)")));
+}
+function MapSection() {
+  const ref = useRef(null),
+    inst = useRef(null);
+  const last = series[series.length - 1];
+  const origins = [{
+    k: 'chegadas_arg',
+    lat: -34.6,
+    lng: -58.4,
+    l: 'Argentina',
+    c: C.warm
+  }, {
+    k: 'chegadas_europa',
+    lat: 48.0,
+    lng: 10.0,
+    l: 'Europa',
+    c: C.accent
+  }, {
+    k: 'chegadas_chile',
+    lat: -33.5,
+    lng: -70.7,
+    l: 'Chile',
+    c: C.purple
+  }, {
+    k: 'chegadas_eua',
+    lat: 39.5,
+    lng: -98.4,
+    l: 'EUA',
+    c: C.amber
+  }, {
+    k: 'chegadas_uru',
+    lat: -34.9,
+    lng: -56.2,
+    l: 'Uruguai',
+    c: C.green
+  }];
+  useEffect(() => {
+    if (!ref.current || inst.current) return;
+    const map = L.map(ref.current, {
+      center: [15, -30],
+      zoom: 2,
+      zoomControl: true,
+      scrollWheelZoom: false
+    });
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
+    inst.current = map;
+    const mx = Math.max(...origins.map(o => last[o.k] || 0));
+    origins.forEach(o => {
+      const v = last[o.k] || 0,
+        r = Math.max(7, Math.sqrt(v / mx) * 38);
+      L.circleMarker([o.lat, o.lng], {
+        radius: r,
+        fillColor: o.c,
+        color: '#fff',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: .72
+      }).bindPopup(`<strong>${o.l}</strong><br/>${fmtN(v)} turistas em ${fmtM(last.mes)}`).addTo(map);
+    });
+    L.circleMarker([-22.9, -43.2], {
+      radius: 10,
+      fillColor: C.primary,
+      color: '#fff',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 1
+    }).bindPopup('<strong>Rio de Janeiro</strong><br/>Destino').addTo(map);
+  }, []);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      boxShadow: '0 1px 4px rgba(0,0,0,.06)',
+      padding: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      marginBottom: 12,
+      flexWrap: 'wrap',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 13,
+      fontWeight: 700,
+      color: C.primary
+    }
+  }, "Origens dos Turistas Internacionais"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      color: C.muted
+    }
+  }, fmtM(last.mes), " · tamanho da bolha proporcional ao volume")), /*#__PURE__*/React.createElement("div", {
+    ref: ref,
+    style: {
+      height: 270,
+      borderRadius: 8
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 16,
+      marginTop: 12
+    }
+  }, origins.map(o => /*#__PURE__*/React.createElement("div", {
+    key: o.k,
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 6
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 11,
+      height: 11,
+      borderRadius: '50%',
+      background: o.c,
+      display: 'inline-block',
+      flexShrink: 0
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 12,
+      color: C.muted
+    }
+  }, o.l, ": ", /*#__PURE__*/React.createElement("strong", null, fmtN(last[o.k])))))));
+}
+function SideMapSection() {
+  const ref2 = useRef(null), inst2 = useRef(null);
+  const last = series[series.length - 1];
+  const origins = [{k:'chegadas_arg',lat:-34.6,lng:-58.4,l:'Argentina',c:C.warm},{k:'chegadas_europa',lat:48.0,lng:10.0,l:'Europa',c:C.accent},{k:'chegadas_chile',lat:-33.5,lng:-70.7,l:'Chile',c:C.purple},{k:'chegadas_eua',lat:39.5,lng:-98.4,l:'EUA',c:C.amber},{k:'chegadas_uru',lat:-34.9,lng:-56.2,l:'Uruguai',c:C.green}];
+  useEffect(() => {
+    if (!ref2.current || inst2.current) return;
+    const map = L.map(ref2.current, {center:[15,-30],zoom:2,zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false});
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'',subdomains:'abcd',maxZoom:19}).addTo(map);
+    inst2.current = map;
+    const mx = Math.max(...origins.map(o => last[o.k]||0));
+    origins.forEach(o => {
+      const v = last[o.k]||0, r = Math.max(6, Math.sqrt(v/mx)*30);
+      L.circleMarker([o.lat,o.lng],{radius:r,fillColor:o.c,color:'#fff',weight:2,opacity:1,fillOpacity:.75}).bindPopup(`<strong>${o.l}</strong><br/>${fmtN(v)} turistas`).addTo(map);
+    });
+    L.circleMarker([-22.9,-43.2],{radius:8,fillColor:C.primary,color:'#fff',weight:2,opacity:1,fillOpacity:1}).bindPopup('<strong>Rio de Janeiro</strong>').addTo(map);
+  }, []);
+  return /*#__PURE__*/React.createElement("div",{style:{background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,padding:14,boxShadow:'0 1px 4px rgba(0,0,0,.06)'}},
+    /*#__PURE__*/React.createElement("div",{style:{fontSize:11,fontWeight:700,color:C.muted,textTransform:'uppercase',letterSpacing:'0.05em',marginBottom:8}}, "Mapa de Origens — ", fmtM(last.mes)),
+    /*#__PURE__*/React.createElement("div",{ref:ref2,style:{height:190,borderRadius:8,overflow:'hidden'}}),
+    /*#__PURE__*/React.createElement("div",{style:{display:'flex',flexWrap:'wrap',gap:'6px 12px',marginTop:10}},
+      origins.map(o => /*#__PURE__*/React.createElement("div",{key:o.k,style:{display:'flex',alignItems:'center',gap:4}},
+        /*#__PURE__*/React.createElement("span",{style:{width:8,height:8,borderRadius:'50%',background:o.c,display:'inline-block',flexShrink:0}}),
+        /*#__PURE__*/React.createElement("span",{style:{fontSize:11,color:C.muted}}, o.l)
+      ))
+    )
+  );
+}
+
+const DEP = ['chegadas_rj', 'chegadas_europa', 'chegadas_arg', 'chegadas_chile', 'chegadas_uru', 'chegadas_eua', 'chegadas_br'];
+const INDEP = ['usd_brl', 'eur_brl', 'ars_brl', 'clp_brl', 'uyu_brl', 'brent_close', 'qav', 'voos', 'assentos', 'rotas'];
+const DL = {
+  chegadas_rj: 'Chegadas RJ',
+  chegadas_europa: 'Europa→RJ',
+  chegadas_arg: 'Argentina→RJ',
+  chegadas_chile: 'Chile→RJ',
+  chegadas_uru: 'Uruguai→RJ',
+  chegadas_eua: 'EUA→RJ',
+  chegadas_br: 'Chegadas BR'
+};
+const IL = {
+  usd_brl: 'USD/BRL',
+  eur_brl: 'EUR/BRL',
+  ars_brl: 'ARS/BRL',
+  clp_brl: 'CLP/BRL',
+  uyu_brl: 'UYU/BRL',
+  brent_close: 'Brent',
+  qav: 'QAV',
+  voos: 'Voos',
+  assentos: 'Assentos',
+  rotas: 'Rotas'
+};
+function HeatmapGrid() {
+  const [hov, setHov] = useState(null);
+  const top3 = useMemo(() => {
+    const ps = [];
+    DEP.forEach(d => INDEP.forEach(i => {
+      const r = correlation_matrix[d]?.[i];
+      if (r != null) ps.push({
+        d,
+        i,
+        r,
+        a: Math.abs(r)
+      });
+    }));
+    return ps.sort((a, b) => b.a - a.a).slice(0, 3);
+  }, []);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      boxShadow: '0 1px 4px rgba(0,0,0,.06)',
+      padding: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'flex-start',
+      justifyContent: 'space-between',
+      marginBottom: 16,
+      flexWrap: 'wrap',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      margin: 0,
+      fontSize: 13,
+      fontWeight: 700,
+      color: C.primary
+    }
+  }, "Correlações contemporâneas"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '3px 0 0',
+      fontSize: 11,
+      color: C.muted
+    }
+  }, "Teal = positivo · Laranja = negativo · Intensidade = força · Passe o mouse para detalhes")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 12,
+      fontSize: 11,
+      color: C.muted
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 4
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 16,
+      height: 10,
+      background: 'rgba(0,168,150,.8)',
+      borderRadius: 3,
+      display: 'inline-block'
+    }
+  }), "positivo"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 4
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 16,
+      height: 10,
+      background: 'rgba(244,132,95,.8)',
+      borderRadius: 3,
+      display: 'inline-block'
+    }
+  }), "negativo"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      overflowX: 'auto'
+    }
+  }, /*#__PURE__*/React.createElement("table", {
+    style: {
+      borderCollapse: 'collapse',
+      fontSize: 11,
+      minWidth: 500
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+    style: {
+      width: 105,
+      textAlign: 'right',
+      paddingRight: 8,
+      paddingBottom: 8,
+      color: C.muted,
+      fontWeight: 500
+    }
+  }), INDEP.map(k => /*#__PURE__*/React.createElement("th", {
+    key: k,
+    style: {
+      paddingBottom: 8,
+      color: C.muted,
+      fontWeight: 700,
+      textAlign: 'center',
+      minWidth: 52
+    }
+  }, IL[k])))), /*#__PURE__*/React.createElement("tbody", null, DEP.map(dep => /*#__PURE__*/React.createElement("tr", {
+    key: dep
+  }, /*#__PURE__*/React.createElement("td", {
+    style: {
+      textAlign: 'right',
+      paddingRight: 10,
+      paddingTop: 3,
+      paddingBottom: 3,
+      fontWeight: 600,
+      color: '#4A5568',
+      whiteSpace: 'nowrap',
+      fontSize: 12
+    }
+  }, DL[dep]), INDEP.map(ind => {
+    const r = correlation_matrix[dep]?.[ind],
+      isH = hov?.d === dep && hov?.i === ind;
+    return /*#__PURE__*/React.createElement("td", {
+      key: ind,
+      style: {
+        textAlign: 'center',
+        padding: '2px 2px',
+        cursor: 'default'
+      },
+      onMouseEnter: () => setHov({
+        d: dep,
+        i: ind,
+        r
+      }),
+      onMouseLeave: () => setHov(null)
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: corrColor(r),
+        color: corrTxt(r),
+        borderRadius: 5,
+        padding: '3px 2px',
+        fontWeight: 700,
+        fontSize: 11,
+        outline: isH ? `2px solid ${C.primary}` : 'none',
+        transition: 'outline .1s',
+        minWidth: 44,
+        textAlign: 'center'
+      }
+    }, r != null ? (r > 0 ? '+' : '') + r.toFixed(2) : '—'));
+  })))))), hov && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 12,
+      padding: '10px 14px',
+      borderRadius: 8,
+      fontSize: 12,
+      color: '#374151',
+      background: '#F0FDF9',
+      border: `1px solid ${C.accent}40`
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, DL[hov.d]), " × ", /*#__PURE__*/React.createElement("strong", null, IL[hov.i]), ": r = ", hov.r > 0 ? '+' : '', hov.r?.toFixed(3), " — correlação ", Math.abs(hov.r) > .5 ? 'forte' : Math.abs(hov.r) > .3 ? 'moderada' : 'fraca', " e ", hov.r > 0 ? 'positiva (as duas variáveis sobem juntas)' : 'negativa (uma sobe quando a outra cai)', "."),
+    CORR_INSIGHT[hov.i] && /*#__PURE__*/React.createElement("p", {style:{margin:'8px 0 0',fontSize:12,lineHeight:1.7,color:'#374151',borderTop:'1px solid rgba(0,168,150,.15)',paddingTop:8}}, CORR_INSIGHT[hov.i]), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 16,
+      paddingTop: 16,
+      borderTop: `1px solid ${C.border}`
+    }
+  }, /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0 0 8px',
+      fontSize: 11,
+      fontWeight: 700,
+      color: C.muted
+    }
+  }, "Destaques desta análise"), top3.map((c, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      display: 'flex',
+      alignItems: 'flex-start',
+      gap: 8,
+      fontSize: 12,
+      color: '#374151',
+      marginBottom: 6
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 800,
+      color: c.r > 0 ? C.accent : C.warm,
+      flexShrink: 0
+    }
+  }, c.r > 0 ? '→' : '←'), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("strong", null, IL[c.i]), " tem a ", ['maior', 'segunda maior', 'terceira maior'][i], " correlação com ", /*#__PURE__*/React.createElement("strong", null, DL[c.d]), " (r = ", c.r > 0 ? '+' : '', c.r.toFixed(2), ").")))));
+}
+const CCF_META = {
+  usd_eua: {
+    t: 'USD/BRL × Chegadas EUA',
+    a: null
+  },
+  eur_europa: {
+    t: 'EUR/BRL × Chegadas Europa',
+    a: null
+  },
+  ars_arg: {
+    t: 'ARS/BRL × Chegadas Argentina',
+    a: 'atipico'
+  },
+  clp_chile: {
+    t: 'CLP/BRL × Chegadas Chile',
+    a: null
+  },
+  uyu_uru: {
+    t: 'UYU/BRL × Chegadas Uruguai',
+    a: null
+  },
+  brent_rj: {
+    t: 'Brent × Chegadas RJ',
+    a: null
+  },
+  qav_rj: {
+    t: 'QAV × Chegadas RJ',
+    a: null
+  },
+  assentos_rj: {
+    t: 'Assentos × Chegadas RJ',
+    a: 'oferta'
+  },
+  rotas_rj: {
+    t: 'Rotas × Chegadas RJ',
+    a: null
+  },
+  usd_rj: {
+    t: 'USD/BRL × Chegadas RJ (geral)',
+    a: null
+  },
+  eur_rj: {
+    t: 'EUR/BRL × Chegadas RJ (geral)',
+    a: null
+  }
+};
+function LagCard({
+  row
+}) {
+  const absR = Math.abs(row.r);
+  const str = absR < 0.2 ? {
+    l: 'Fraco',
+    c: '#94A3B8',
+    bg: 'rgba(148,163,184,.12)'
+  } : absR < 0.35 ? {
+    l: 'Moderado',
+    c: C.amber,
+    bg: 'rgba(245,158,11,.1)'
+  } : {
+    l: 'Forte',
+    c: C.accent,
+    bg: 'rgba(0,168,150,.1)'
+  };
+  const isNeg = row.r < 0;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 10,
+      padding: '14px 16px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 10,
+      boxShadow: '0 1px 3px rgba(0,0,0,.05)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'flex-start',
+      justifyContent: 'space-between',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 700,
+      color: '#374151',
+      lineHeight: 1.35,
+      marginBottom: 2
+    }
+  }, row.independente), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: C.muted
+    }
+  }, "→ ", row.dependente)), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      padding: '2px 9px',
+      borderRadius: 20,
+      background: str.bg,
+      color: str.c,
+      fontWeight: 700,
+      whiteSpace: 'nowrap',
+      flexShrink: 0
+    }
+  }, str.l)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 20,
+      alignItems: 'flex-end'
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      fontWeight: 700,
+      color: C.muted,
+      letterSpacing: '0.06em',
+      marginBottom: 3
+    }
+  }, "CORRELAÇÃO (r)"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 22,
+      fontWeight: 800,
+      color: isNeg ? C.warm : C.accent,
+      fontFamily: 'monospace',
+      lineHeight: 1
+    }
+  }, row.r > 0 ? '+' : '', row.r.toFixed(3))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      fontWeight: 700,
+      color: C.muted,
+      letterSpacing: '0.06em',
+      marginBottom: 3
+    }
+  }, "DEFASAGEM"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 22,
+      fontWeight: 800,
+      color: C.text,
+      fontFamily: 'monospace',
+      lineHeight: 1
+    }
+  }, row.lag > 0 ? '+' : '', row.lag < 0 ? row.lag + 'm' : row.lag + 'm')), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      textAlign: 'right'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      fontWeight: 700,
+      color: C.muted,
+      letterSpacing: '0.06em',
+      marginBottom: 3
+    }
+  }, "DIREÇÃO"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 700,
+      color: isNeg ? C.warm : C.accent
+    }
+  }, isNeg ? '↑ câmbio → ↓ chegadas' : '↑ câmbio → ↑ chegadas'))), row.alerta === 'espurio' && row.independente.includes('Assentos') && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'rgba(0,168,150,.07)',
+      border: '1px solid rgba(0,168,150,.2)',
+      borderRadius: 8,
+      padding: '8px 10px',
+      fontSize: 11,
+      color: '#065F46',
+      lineHeight: 1.55
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "ℹ Oferta aérea"), " — assentos disponíveis no Galeão são um driver direto de chegadas. A correlação contemporânea (lag=0) é fortíssima (r≈0.95). O lag negativo no CCF reflete planejamento de malha aérea com antecedência — não é espúrio."), row.alerta === 'espurio' && !row.independente.includes('Assentos') && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'rgba(244,132,95,.08)',
+      border: '1px solid rgba(244,132,95,.2)',
+      borderRadius: 8,
+      padding: '8px 10px',
+      fontSize: 11,
+      color: '#9A3412',
+      lineHeight: 1.55
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "⚠ Correlação espúria"), " — matematicamente correlacionados porque os dois fenômenos têm picos no mesmo período do ano (sazonalidade compartilhada). Isso não indica relação causal. Não usar como preditor."), row.alerta === 'atipico' && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'rgba(245,158,11,.08)',
+      border: '1px solid rgba(245,158,11,.2)',
+      borderRadius: 8,
+      padding: '8px 10px',
+      fontSize: 11,
+      color: '#92400E',
+      lineHeight: 1.55
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "⚠ Câmbio atípico"), " — ARS/BRL tem comportamento estruturalmente diferente (hiperinflação, controles de capital). Correlação e defasagem devem ser interpretadas com cautela."), !row.alerta && row.lag > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: '#374151',
+      lineHeight: 1.55,
+      borderTop: `1px solid ${C.border}`,
+      paddingTop: 8
+    }
+  }, "Variações em ", /*#__PURE__*/React.createElement("em", null, row.independente.toLowerCase()), " se refletem nas chegadas com ~", row.lag, " ", row.lag === 1 ? 'mês' : 'meses', " de defasagem."));
+}
+function CCFMini({
+  pairKey,
+  data
+}) {
+  const meta = CCF_META[pairKey] || {
+    t: pairKey,
+    a: null
+  };
+  const best = data.reduce((mx, d) => Math.abs(d.r) > Math.abs(mx.r) ? d : mx, {
+    r: 0,
+    lag: 0
+  });
+  const isAssentos = pairKey === 'assentos_rj';
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minWidth: 210,
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 10,
+      padding: 12,
+      boxShadow: '0 1px 3px rgba(0,0,0,.05)',
+      flexShrink: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'flex-start',
+      justifyContent: 'space-between',
+      gap: 4,
+      marginBottom: 2
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: '#374151',
+      lineHeight: 1.3
+    }
+  }, meta.t), meta.a === 'atipico' && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 10,
+      padding: '1px 6px',
+      borderRadius: 20,
+      background: 'rgba(245,158,11,.12)',
+      color: '#B45309',
+      whiteSpace: 'nowrap',
+      fontWeight: 700
+    }
+  }, "⚠ Atípico"), meta.a === 'espurio' && !isAssentos && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 10,
+      padding: '1px 6px',
+      borderRadius: 20,
+      background: 'rgba(244,132,95,.12)',
+      color: C.warmD,
+      whiteSpace: 'nowrap',
+      fontWeight: 700
+    }
+  }, "⚠ Espúrio")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: C.muted,
+      marginBottom: 4
+    }
+  }, "Lag destaque: ", best.lag > 0 ? '+' : '', best.lag, "m · r=", best.r > 0 ? '+' : '', best.r.toFixed(3)), /*#__PURE__*/React.createElement(ResponsiveContainer, {
+    width: "100%",
+    height: 100
+  }, /*#__PURE__*/React.createElement(BarChart, {
+    data: data,
+    margin: {
+      top: 2,
+      right: 4,
+      left: 0,
+      bottom: 0
+    }
+  }, /*#__PURE__*/React.createElement(CartesianGrid, {
+    vertical: false,
+    stroke: "#F4F4F4"
+  }), /*#__PURE__*/React.createElement(XAxis, {
+    dataKey: "lag",
+    tick: {
+      fontSize: 9,
+      fill: '#A0AEC0'
+    },
+    tickLine: false,
+    axisLine: false,
+    tickFormatter: v => v % 6 === 0 ? String(v) : ''
+  }), /*#__PURE__*/React.createElement(YAxis, {
+    domain: [-1, 1],
+    tick: {
+      fontSize: 9,
+      fill: '#A0AEC0'
+    },
+    tickLine: false,
+    axisLine: false,
+    width: 22,
+    ticks: [-0.5, 0, 0.5]
+  }), /*#__PURE__*/React.createElement(ReferenceLine, {
+    y: ccf_ci,
+    stroke: "#CBD5E0",
+    strokeDasharray: "3 2"
+  }), /*#__PURE__*/React.createElement(ReferenceLine, {
+    y: -ccf_ci,
+    stroke: "#CBD5E0",
+    strokeDasharray: "3 2"
+  }), /*#__PURE__*/React.createElement(ReferenceLine, {
+    y: 0,
+    stroke: "#E2E8F0"
+  }), /*#__PURE__*/React.createElement(Bar, {
+    dataKey: "r",
+    isAnimationActive: false,
+    maxBarSize: 7
+  }, data.map((entry, idx) => /*#__PURE__*/React.createElement(Cell, {
+    key: idx,
+    fill: entry.r >= 0 ? C.accent : C.warm,
+    fillOpacity: entry.lag === best.lag ? 1 : Math.abs(entry.r) > ccf_ci ? 0.65 : 0.18
+  }))))));
+}
+function LagsTable() {
+  const [exp, setExp] = useState(null);
+  const badge = a => {
+    if (!a) return /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        padding: '2px 10px',
+        borderRadius: 20,
+        background: 'rgba(0,168,150,.1)',
+        color: C.accentD,
+        fontWeight: 700
+      }
+    }, "OK");
+    if (a === 'atipico') return /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        padding: '2px 10px',
+        borderRadius: 20,
+        background: 'rgba(245,158,11,.12)',
+        color: '#B45309',
+        fontWeight: 700
+      }
+    }, "⚠ Atípico");
+    if (a === 'oferta') return /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        padding: '2px 10px',
+        borderRadius: 20,
+        background: 'rgba(0,168,150,.08)',
+        color: C.accentD,
+        fontWeight: 700
+      }
+    }, "🛫 Oferta");
+    if (a === 'espurio') return /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        padding: '2px 10px',
+        borderRadius: 20,
+        background: 'rgba(244,132,95,.12)',
+        color: C.warmD,
+        fontWeight: 700
+      }
+    }, "⚠ Espúrio");
+    return /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        padding: '2px 10px',
+        borderRadius: 20,
+        background: 'rgba(113,128,150,.1)',
+        color: '#4A5568',
+        fontWeight: 700
+      }
+    }, "Fraco");
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      boxShadow: '0 1px 4px rgba(0,0,0,.06)',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("table", {
+    style: {
+      width: '100%',
+      fontSize: 13,
+      borderCollapse: 'collapse'
+    }
+  }, /*#__PURE__*/React.createElement("thead", {
+    style: {
+      background: C.bg,
+      borderBottom: `1px solid ${C.border}`
+    }
+  }, /*#__PURE__*/React.createElement("tr", null, ['Variável independente', 'Variável dependente', 'r máx.', 'Lag', 'Status'].map((h, i) => /*#__PURE__*/React.createElement("th", {
+    key: i,
+    style: {
+      textAlign: i < 2 ? 'left' : 'center',
+      padding: '10px 14px',
+      fontSize: 11,
+      fontWeight: 700,
+      color: C.muted,
+      textTransform: 'uppercase',
+      letterSpacing: '0.04em'
+    }
+  }, h)))), /*#__PURE__*/React.createElement("tbody", null, lags.map((row, i) => /*#__PURE__*/React.createElement(React.Fragment, {
+    key: i
+  }, /*#__PURE__*/React.createElement("tr", {
+    onClick: () => setExp(exp === i ? null : i),
+    style: {
+      borderBottom: '1px solid #F0F4F8',
+      cursor: 'pointer'
+    },
+    className: "hover:bg-gray-50"
+  }, /*#__PURE__*/React.createElement("td", {
+    style: {
+      padding: '10px 14px',
+      fontWeight: 600,
+      color: C.text
+    }
+  }, row.independente), /*#__PURE__*/React.createElement("td", {
+    style: {
+      padding: '10px 14px',
+      color: '#374151'
+    }
+  }, row.dependente), /*#__PURE__*/React.createElement("td", {
+    style: {
+      padding: '10px 14px',
+      textAlign: 'center',
+      fontFamily: 'monospace',
+      fontWeight: 800,
+      color: row.r > 0 ? C.accent : C.warm,
+      fontSize: 14
+    }
+  }, row.r > 0 ? '+' : '', row.r.toFixed(3)), /*#__PURE__*/React.createElement("td", {
+    style: {
+      padding: '10px 14px',
+      textAlign: 'center',
+      fontFamily: 'monospace',
+      color: C.text
+    }
+  }, row.lag > 0 ? '+' : '', row.lag, "m"), /*#__PURE__*/React.createElement("td", {
+    style: {
+      padding: '10px 14px',
+      textAlign: 'center'
+    }
+  }, badge(row.independente === 'Assentos — Galeão' ? 'oferta' : row.alerta))), exp === i && /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: '#F0FDF9'
+    }
+  }, /*#__PURE__*/React.createElement("td", {
+    colSpan: 5,
+    style: {
+      padding: '12px 16px',
+      fontSize: 13,
+      color: '#374151',
+      fontStyle: 'italic',
+      lineHeight: 1.7
+    }
+  }, row.interpretacao, row.lag > 0 && /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: 'block',
+      marginTop: 6,
+      fontSize: 12,
+      color: C.muted,
+      fontStyle: 'normal'
+    }
+  }, "Leia-se: variações em ", /*#__PURE__*/React.createElement("em", null, row.independente), " se refletem nas chegadas com aproximadamente ", row.lag, " meses de defasagem."))))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '8px 14px',
+      fontSize: 11,
+      color: C.muted,
+      background: C.bg,
+      borderTop: `1px solid ${C.border}`
+    }
+  }, "Clique em uma linha para expandir a interpretação · Lags identificados via CCF (Cross-Correlation Function)"));
+}
+function Sec({
+  id,
+  title,
+  sub,
+  children
+}) {
+  const [open, setOpen] = useState(true);
+  return /*#__PURE__*/React.createElement("section", {
+    id: id,
+    style: {
+      marginBottom: 36
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setOpen(o => !o),
+    style: {
+      width: '100%',
+      display: 'flex',
+      alignItems: 'flex-start',
+      justifyContent: 'space-between',
+      marginBottom: 16,
+      cursor: 'pointer',
+      background: 'none',
+      border: 'none',
+      padding: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'left'
+    }
+  }, /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontSize: 18,
+      fontWeight: 700,
+      color: C.primary
+    }
+  }, title), sub && /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '3px 0 0',
+      fontSize: 12,
+      color: C.muted
+    }
+  }, sub)), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.muted,
+      fontSize: 22,
+      lineHeight: 1,
+      marginLeft: 8,
+      flexShrink: 0
+    }
+  }, open ? '−' : '+')), open && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 20
+    }
+  }, children));
+}
+function DadosSection() {
+  const [grp, setGrp] = useState('chegadas');
+  const [active, setActive] = useState('chegadas_rj');
+  const insights = useMemo(computeInsights, []);
+  const last = series[series.length - 1],
+    prev = series[series.length - 2];
+  const yoy = series.length >= 13 ? series[series.length - 13] : null;
+  const doms = ['chegadas_arg', 'chegadas_europa', 'chegadas_chile', 'chegadas_eua', 'chegadas_uru'];
+  const domK = doms.reduce((mx, k) => (last[k] || 0) > (last[mx] || 0) ? k : mx, doms[0]);
+  const domL = {
+    chegadas_arg: 'Argentina',
+    chegadas_europa: 'Europa',
+    chegadas_chile: 'Chile',
+    chegadas_eua: 'EUA',
+    chegadas_uru: 'Uruguai'
+  };
+  return /*#__PURE__*/React.createElement(Sec, {
+    id: "dados",
+    title: "Painel de Dados",
+    sub: `Séries históricas · Jan/2018 – ${fmtM(last_update)}`
+  }, (() => {
+    const ytdYear = last.mes.slice(0, 4);
+    const ytd = series.filter(d => d.mes.startsWith(ytdYear) && d.mes <= last.mes).reduce((s, d) => s + (d.chegadas_rj || 0), 0);
+    const ytdPrev = series.filter(d => d.mes.startsWith(String(+ytdYear - 1)) && d.mes.slice(5) <= last.mes.slice(5)).reduce((s, d) => s + (d.chegadas_rj || 0), 0);
+    const ytdDelta = ytdPrev > 0 ? pct(ytd, ytdPrev) : null;
+    const yoyRj = yoy ? pct(last.chegadas_rj, yoy.chegadas_rj) : null;
+    const yoyBr = yoy ? pct(last.chegadas_br, yoy.chegadas_br) : null;
+    return /*#__PURE__*/React.createElement("div", {
+      className: "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
+    }, /*#__PURE__*/React.createElement(KPICard, {
+      label: "Chegadas RJ",
+      value: fmtN(last.chegadas_rj),
+      delta: yoyRj,
+      sub: `YoY vs ${fmtM(yoy?.mes || '')}`
+    }), /*#__PURE__*/React.createElement(KPICard, {
+      label: `RJ YTD ${ytdYear}`,
+      value: fmtN(ytd),
+      delta: ytdDelta,
+      sub: `YoY acumulado`,
+      accent: C.accent
+    }), /*#__PURE__*/React.createElement(KPICard, {
+      label: "Chegadas Brasil",
+      value: fmtN(last.chegadas_br),
+      delta: yoyBr,
+      sub: `YoY vs ${fmtM(yoy?.mes || '')}`
+    }), /*#__PURE__*/React.createElement(KPICard, {
+      label: "Participação RJ/BR",
+      value: `${(last.chegadas_rj / last.chegadas_br * 100).toFixed(1)}%`,
+      delta: null,
+      sub: "do total Brasil"
+    }), /*#__PURE__*/React.createElement(KPICard, {
+      label: "Origem líder",
+      value: domL[domK],
+      delta: null,
+      sub: `${fmtN(last[domK])} turistas`,
+      accent: C.warm
+    }));
+  })(), /*#__PURE__*/React.createElement(InsightCard, {
+    insights: insights
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      boxShadow: '0 1px 4px rgba(0,0,0,.06)',
+      padding: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 6,
+      marginBottom: 20
+    }
+  }, Object.entries(GROUPS).map(([k, g]) => /*#__PURE__*/React.createElement("button", {
+    key: k,
+    onClick: () => {
+      setGrp(k);
+      setActive(g.series[0].k);
+    },
+    style: {
+      padding: '6px 16px',
+      borderRadius: 20,
+      fontSize: 13,
+      fontWeight: 600,
+      cursor: 'pointer',
+      transition: 'all .15s',
+      background: grp === k ? C.primary : 'transparent',
+      color: grp === k ? '#fff' : C.muted,
+      border: `1.5px solid ${grp === k ? C.primary : C.border}`
+    }
+  }, g.label))), /*#__PURE__*/React.createElement(MainChart, {
+    grp: grp,
+    active: active,
+    setActive: setActive
+  }));
+}
+const CCF_PAIR_CFG = [
+  {key:'usd_eua', lagIdx:0, text:'Em linguagem direta: quando o dólar fica mais caro (o real se desvaloriza), o Brasil fica mais barato para o turista americano — como um destino "em promoção". O gráfico mostra que essa relação funciona com cerca de 4 meses de defasagem: o turista percebe a oportunidade, planeja a viagem, compra as passagens e chega ao Rio de Janeiro aproximadamente 4 meses depois.'},
+  {key:'eur_europa', lagIdx:1, text:'Quando o euro vale mais reais, o turista europeu consegue comprar mais coisas no Brasil com o mesmo dinheiro — hotel, restaurante, passeios ficam mais baratos para ele. O gráfico mostra que isso se traduz em mais chegadas com cerca de 3 meses de defasagem: tempo entre a decisão de viajar e a chegada efetiva ao Rio.'},
+  {key:'ars_arg', lagIdx:2, text:'Este é o gráfico mais difícil de interpretar. Em teoria, peso argentino mais forte = Brasil mais barato para argentinos = mais chegadas. Mas a Argentina viveu crises cambiais severas (hiperinflação em 2019 e 2023, controles de capital) que inverteram a lógica esperada. Em vários momentos, o peso colapsou e as chegadas cresceram — talvez porque viajar ao Brasil virou uma forma de acessar dólares ou escapar da crise econômica local. Requer análise contextual caso a caso.'},
+  {key:'clp_chile', lagIdx:3, text:'Peso chileno mais forte = Chile pode comprar mais reais = Brasil fica mais barato para o chileno. A correlação existe, mas é moderada — o Chile está relativamente perto do Brasil, e o custo da passagem pesa menos na decisão de viagem do que em origens intercontinentais. Fatores como sazonalidade e oferta de voos diretos tendem a ser mais determinantes.'},
+  {key:'uyu_uru', lagIdx:4, text:'O peso uruguaio apresenta correlação com lag negativo (-6m), sugerindo que variações cambiais antecedem decisões de viagem com antecedência maior para uruguaios. O volume é menor, limitando o impacto agregado, mas a sensibilidade ao câmbio é real.'},
+  {key:'brent_rj', lagIdx:5, text:'A cadeia é simples: petróleo mais caro → combustível de avião (QAV) mais caro → aéreas repassam nos preços ou cortam voos → menos turistas conseguem viajar → chegadas ao Rio caem. O gráfico mostra que esse efeito acontece com apenas 1 mês de defasagem — as aéreas ajustam preços e capacidade rapidamente. Nos lags maiores (8 a 12 meses), o sinal se inverte: períodos de petróleo caro no passado coincidiram com crescimento de chegadas (o gráfico captura expansão pós-COVID).'},
+  {key:'qav_rj', lagIdx:6, text:'QAV é o nome técnico do combustível dos aviões — e representa uma das maiores despesas das companhias aéreas. Quando o QAV sobe, as aéreas precisam ou aumentar as passagens, ou reduzir os voos. O efeito é rápido: em cerca de 1 mês já aparece nos dados de chegadas ao Rio. A correlação positiva no lag 0 (QAV alto + chegadas altas no mesmo mês) acontece porque os dois tendem a crescer juntos em períodos de expansão econômica geral.'},
+  {key:'assentos_rj', lagIdx:7, text:'Em linguagem simples: se não há assentos disponíveis, não há como o turista chegar — a oferta de assentos determina o teto físico de chegadas possíveis. A relação é real e direta: mais avião + mais assentos = mais turistas podendo viajar. O gráfico mostra correlação fortíssima no lag 0 (r≈0,95). O lag negativo (-12m) no destaque reflete o ciclo de planejamento das aéreas: decisões de capacidade são tomadas com ~12 meses de antecedência, então a oferta futura de assentos já "prenuncia" as chegadas futuras.'},
+  {key:'rotas_rj', lagIdx:8, text:'Cada nova rota internacional conectada ao Galeão é um novo corredor de acesso ao Rio: abre o mercado de uma nova cidade ou país para visitar o destino. O gráfico mostra que o efeito é rápido — com 1 mês de defasagem já aparece nas chegadas. Mais rotas = mais mercados emissores ativos = mais turistas podendo chegar.'},
+  {key:'usd_rj', lagIdx:9, text:'O dólar não afeta só os americanos — muitos países do mundo negociam em dólar ou têm suas moedas influenciadas por ele. Quando o real cai frente ao dólar, o Brasil fica mais competitivo como destino turístico para múltiplas origens simultaneamente. O lag de +4 meses é consistente com o padrão observado para os americanos, reforçando a robustez da relação.'},
+  {key:'eur_rj', lagIdx:10, text:'O euro, assim como o dólar, influencia não só europeus, mas qualquer origem cujo câmbio está atrelado ou correlacionado com o euro. Quando o euro valoriza frente ao real, o Brasil fica mais atrativo de forma ampla. O lag de +4 meses é similar ao do dólar, sugerindo que o ciclo de planejamento de viagem internacional é relativamente consistente entre origens distintas.'},
+];
+function CCFFullChart() {
+  const keys = CCF_PAIR_CFG.map(p => p.key);
+  const [selKey, setSelKey] = React.useState(keys[0]);
+  const cfg = CCF_PAIR_CFG.find(p => p.key === selKey) || CCF_PAIR_CFG[0];
+  const data = ccf_pairs[selKey] || [];
+  const lagRow = lags[cfg.lagIdx] || {};
+  const optLag = lagRow.lag != null ? lagRow.lag : null;
+  const meta = CCF_META[selKey] || {t: selKey, a: null};
+  return /*#__PURE__*/React.createElement("div", {style:{marginTop:8}},
+    /*#__PURE__*/React.createElement("div", {style:{marginBottom:12,display:'flex',alignItems:'center',gap:12,flexWrap:'wrap'}},
+      /*#__PURE__*/React.createElement("select", {
+        value: selKey,
+        onChange: e => setSelKey(e.target.value),
+        style: {padding:'8px 14px',borderRadius:8,border:`1.5px solid ${C.border}`,fontSize:13,fontWeight:600,color:C.primary,background:C.surface,cursor:'pointer',outline:'none',minWidth:280}
+      }, CCF_PAIR_CFG.map(p => /*#__PURE__*/React.createElement("option",{key:p.key,value:p.key}, CCF_META[p.key]?.t || p.key))),
+      meta.a === 'atipico' && /*#__PURE__*/React.createElement("span",{style:{fontSize:11,padding:'3px 10px',borderRadius:20,background:'rgba(245,158,11,.12)',color:'#B45309',fontWeight:700}}, "⚠ Câmbio atípico"),
+      meta.a === 'oferta' && /*#__PURE__*/React.createElement("span",{style:{fontSize:11,padding:'3px 10px',borderRadius:20,background:'rgba(0,168,150,.08)',color:C.accentD,fontWeight:700}}, "🛫 Oferta: capacidade instalada")
+    ),
+    /*#__PURE__*/React.createElement("div", {style:{background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,padding:'14px 16px 10px',boxShadow:'0 1px 4px rgba(0,0,0,.06)'}},
+      /*#__PURE__*/React.createElement("div", {style:{marginBottom:8,fontSize:12,fontWeight:700,color:C.primary}}, meta.t),
+      /*#__PURE__*/React.createElement("div", {style:{display:'flex',alignItems:'center',gap:18,marginBottom:10,fontSize:11,color:C.muted,flexWrap:'wrap'}},
+        /*#__PURE__*/React.createElement("span", {style:{display:'flex',alignItems:'center',gap:5}},
+          /*#__PURE__*/React.createElement("span",{style:{width:22,borderTop:'2px dashed #EF4444',display:'inline-block'}}),
+          `IC 95% (±${ccf_ci})`
+        ),
+        optLag != null && /*#__PURE__*/React.createElement("span", {style:{display:'flex',alignItems:'center',gap:5}},
+          /*#__PURE__*/React.createElement("span",{style:{width:12,height:12,background:'#16A34A',borderRadius:2,display:'inline-block'}}),
+          `Lag ótimo = ${optLag > 0 ? '+' : ''}${optLag}m · r = ${lagRow.r > 0 ? '+' : ''}${(lagRow.r||0).toFixed(3)}`
+        )
+      ),
+      /*#__PURE__*/React.createElement(ResponsiveContainer, {width:"100%", height:290},
+        /*#__PURE__*/React.createElement(BarChart, {data:data, margin:{top:8,right:16,left:0,bottom:0}, barCategoryGap:'12%'},
+          /*#__PURE__*/React.createElement(CartesianGrid, {vertical:false, stroke:"#F1F5F9"}),
+          /*#__PURE__*/React.createElement(XAxis, {
+            dataKey:"lag",
+            tick:{fontSize:11,fill:'#94A3B8'},
+            tickLine:false,
+            axisLine:{stroke:'#E2E8F0'},
+            tickFormatter: v => v % 3 === 0 ? (v > 0 ? '+'+v : String(v)) : ''
+          }),
+          /*#__PURE__*/React.createElement(YAxis, {
+            domain:[-1,1],
+            tick:{fontSize:10,fill:'#94A3B8'},
+            tickLine:false,
+            axisLine:false,
+            width:30,
+            ticks:[-1,-0.5,0,0.5,1],
+            tickFormatter: v => v.toFixed(1)
+          }),
+          /*#__PURE__*/React.createElement(ReferenceLine, {y:ccf_ci, stroke:"#EF4444", strokeDasharray:"4 3", strokeWidth:1.5}),
+          /*#__PURE__*/React.createElement(ReferenceLine, {y:-ccf_ci, stroke:"#EF4444", strokeDasharray:"4 3", strokeWidth:1.5}),
+          /*#__PURE__*/React.createElement(ReferenceLine, {y:0, stroke:"#CBD5E0", strokeWidth:1}),
+          optLag != null && /*#__PURE__*/React.createElement(ReferenceLine, {
+            x:optLag, stroke:"#F59E0B", strokeWidth:2.5,
+            label:{value: optLag > 0 ? '+'+optLag : String(optLag), position:'top', fontSize:11, fill:'#D97706', fontWeight:700}
+          }),
+          /*#__PURE__*/React.createElement(Bar, {dataKey:"r", isAnimationActive:false, maxBarSize:16},
+            data.map((entry, idx) => /*#__PURE__*/React.createElement(Cell, {
+              key:idx,
+              fill: entry.lag === optLag ? '#16A34A' : entry.r >= 0 ? '#60A5FA' : '#F87171',
+              fillOpacity: entry.lag === optLag ? 1 : Math.abs(entry.r) > ccf_ci ? 0.80 : 0.30
+            }))
+          )
+        )
+      )
+    ),
+    /*#__PURE__*/React.createElement("div", {style:{marginTop:10,padding:'10px 14px',borderRadius:8,fontSize:12,lineHeight:1.75,color:'#374151',background:'#F8FAFC',border:`1px solid ${C.border}`}},
+      cfg.text
+    )
+  );
+}
+function CorrelacoesSection() {
+  return /*#__PURE__*/React.createElement(Sec, {
+    id:"correlacoes",
+    title:"Análise de Correlação",
+    sub:"Correlação contemporânea e defasagem temporal entre drivers macroeconômicos e chegadas internacionais"
+  },
+    /*#__PURE__*/React.createElement(HeatmapGrid, null),
+    /*#__PURE__*/React.createElement("div", {style:{background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,boxShadow:'0 1px 4px rgba(0,0,0,.06)',padding:20}},
+      /*#__PURE__*/React.createElement("h3", {style:{margin:'0 0 4px',fontSize:13,fontWeight:700,color:C.primary}},
+        "Função de Correlação Cruzada (CCF) — lag de −12 a +12 meses"
+      ),
+      /*#__PURE__*/React.createElement("p", {style:{margin:'0 0 14px',fontSize:12,color:C.muted,lineHeight:1.65,maxWidth:720}},
+        "Selecione o par de variáveis para visualizar a CCF completa. Barras à ",
+        /*#__PURE__*/React.createElement("strong", null, "direita do zero"),
+        " (lags positivos) indicam que a variável independente ",
+        /*#__PURE__*/React.createElement("em", null, "antecede"),
+        " as chegadas — relação causal potencial. Barras à ",
+        /*#__PURE__*/React.createElement("strong", null, "esquerda"),
+        " indicam o sentido inverso (sem interpretação causal). A linha tracejada vermelha é o limite de significância estatística (IC 95%). A barra verde indica o lag ótimo identificado na análise."
+      ),
+      /*#__PURE__*/React.createElement(CCFFullChart, null)
+    )
+  );
+}
+
+function LagsSection() {
+  return /*#__PURE__*/React.createElement(Sec, {
+    id: "lags",
+    title: "Tabela de Defasagens (Lags)",
+    sub: "Resumo consolidado · clique em uma linha para expandir a interpretação"
+  }, /*#__PURE__*/React.createElement(LagsTable, null));
+}
+function ProjecaoSection() {
+  const steps = [{
+    l: 'Verificação ADF',
+    s: '✓ Concluído',
+    c: C.accent
+  }, {
+    l: 'Análise CCF',
+    s: '✓ Concluído',
+    c: C.accent
+  }, {
+    l: 'SARIMA',
+    s: 'Em andamento',
+    c: C.amber
+  }, {
+    l: 'OLS Defasagens',
+    s: 'Pendente',
+    c: C.muted
+  }];
+  return /*#__PURE__*/React.createElement(Sec, {
+    id: "projecao",
+    title: "Modelo Preditivo",
+    sub: "Projeções de chegadas internacionais para 3 e 6 meses à frente"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      boxShadow: '0 1px 4px rgba(0,0,0,.06)',
+      padding: 40,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      textAlign: 'center',
+      gap: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 64,
+      height: 64,
+      borderRadius: '50%',
+      background: 'rgba(27,58,92,.07)',
+      fontSize: 28,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  }, "🔬"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      margin: '0 0 8px',
+      fontWeight: 700,
+      color: C.text,
+      fontSize: 16
+    }
+  }, "Modelos em construção"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      fontSize: 13,
+      color: C.muted,
+      maxWidth: 480,
+      lineHeight: 1.75
+    }
+  }, "Esta seção publicará projeções com intervalos de confiança assim que os modelos forem treinados e os resíduos verificados. O modelo principal é o ", /*#__PURE__*/React.createElement("strong", null, "OLS com Defasagens Distribuídas"), " (referência: Tavares, 2024), usando os lags identificados pela CCF. O benchmark univariado é o ", /*#__PURE__*/React.createElement("strong", null, "SARIMA"), ". Nenhuma projeção é publicada sem passar pela verificação de resíduos.")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      gap: 24
+    }
+  }, steps.map((s, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: C.muted,
+      marginBottom: 4
+    }
+  }, s.l), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 700,
+      color: s.c
+    }
+  }, s.s))))));
+}
+function MetodologiaSection() {
+  const [op, setOp] = useState(null);
+  const panels = [{
+    id: 'fontes',
+    t: 'Fontes de dados',
+    txt: ['As chegadas internacionais (Brasil e Rio de Janeiro) são publicadas mensalmente pela Embratur. As taxas de câmbio (USD, EUR, ARS, CLP e UYU frente ao BRL) são médias mensais do Banco Central do Brasil.', 'Preços do petróleo Brent e combustível QAV (USD/galão) são obtidos de fontes de mercado. Dados de oferta aérea — voos, assentos e rotas internacionais — referem-se ao Aeroporto do Galeão (GIG) e são publicados pela ANAC.', `A série histórica cobre mensalmente de janeiro/2018 a ${fmtM(last_update)}.`]
+  }, {
+    id: 'modelos',
+    t: 'Modelos utilizados',
+    txt: ['A Função de Correlação Cruzada (CCF) identifica com quantos meses de defasagem cada variável econômica se associa às chegadas internacionais.', 'O teste ADF (Dickey-Fuller Aumentado) verifica a estacionariedade das séries antes de qualquer modelagem — séries não-estacionárias precisam de diferenciação para evitar correlações espúrias.', 'O modelo preditivo principal será o OLS com Defasagens Distribuídas (referência: Tavares, 2024), incorporando os lags identificados pela CCF. O benchmark é o SARIMA. Métricas: MAPE, MAE e RMSE.']
+  }, {
+    id: 'limites',
+    t: 'Limitações e ressalvas',
+    txt: ['(1) O câmbio argentino (ARS/BRL) tem comportamento atípico — hiperinflação e controles de capital tornam o sinal e a defasagem menos confiáveis que para as demais origens. Monitorar separadamente.', '(2) O período COVID-19 (mar/2020 – dez/2021) representa um choque estrutural extremo. Os modelos são testados com e sem esse período para avaliar o impacto nas métricas.', '(3) A correlação entre assentos disponíveis e chegadas ao lag de −12 meses provavelmente reflete sazonalidade compartilhada, não causalidade — não é usada nos modelos preditivos.']
+  }, {
+    id: 'refs',
+    t: 'Referências metodológicas',
+    txt: ['TAVARES, J. (2024). Análise e Aplicação de Modelos Preditivos no Fluxo de Turistas em Território Brasileiro Frente a Aspectos Econômicos. Dissertação, FGV-EPGE. O modelo OLS com Defasagens Distribuídas obteve MAPE ~7,3%, melhor resultado entre os modelos multivariados testados.', 'CÂMARA, I. (2019). Dissertação complementar sobre demanda turística internacional e fatores de oferta aérea — referência de enquadramento teórico.']
+  }];
+  return /*#__PURE__*/React.createElement(Sec, {
+    id: "metodologia",
+    title: "Nota Metodológica",
+    sub: "Fontes, modelos e limitações em linguagem acessível"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      boxShadow: '0 1px 4px rgba(0,0,0,.06)',
+      overflow: 'hidden'
+    }
+  }, panels.map((p, i) => /*#__PURE__*/React.createElement("div", {
+    key: p.id,
+    style: {
+      borderBottom: i < panels.length - 1 ? `1px solid ${C.border}` : 'none'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setOp(op === p.id ? null : p.id),
+    style: {
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: '16px 20px',
+      cursor: 'pointer',
+      background: 'none',
+      border: 'none',
+      textAlign: 'left'
+    },
+    className: "hover:bg-gray-50"
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 14,
+      fontWeight: 700,
+      color: C.primary
+    }
+  }, p.t), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.muted,
+      fontSize: 20
+    }
+  }, op === p.id ? '−' : '+')), op === p.id && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 20px 20px',
+      background: '#FAFBFC'
+    }
+  }, p.txt.map((t, j) => /*#__PURE__*/React.createElement("p", {
+    key: j,
+    style: {
+      margin: j ? '12px 0 0' : '0',
+      fontSize: 13,
+      color: '#374151',
+      lineHeight: 1.75
+    }
+  }, t)))))));
+}
+const NAV = [{
+  id: 'dados',
+  l: 'Painel de Dados',
+  ic: '📊'
+}, {
+  id: 'correlacoes',
+  l: 'Correlações',
+  ic: '🔗'
+}, {
+  id: 'lags',
+  l: 'Tabela de Lags',
+  ic: '⏱'
+}, {
+  id: 'projecao',
+  l: 'Modelo Preditivo',
+  ic: '🔮'
+}, {
+  id: 'metodologia',
+  l: 'Metodologia',
+  ic: '📚'
+}];
+function Sidebar({
+  active,
+  open,
+  setOpen
+}) {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, open && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(0,0,0,.3)',
+      zIndex: 20
+    },
+    className: "lg:hidden",
+    onClick: () => setOpen(false)
+  }), /*#__PURE__*/React.createElement("aside", {
+    style: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      height: '100%',
+      width: 220,
+      zIndex: 30,
+      background: C.primary,
+      paddingTop: 56,
+      display: 'flex',
+      flexDirection: 'column'
+    },
+    className: open ? '' : 'hidden lg:flex'
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '20px 16px 8px',
+      fontSize: 11,
+      fontWeight: 700,
+      color: 'rgba(255,255,255,.4)',
+      textTransform: 'uppercase',
+      letterSpacing: '0.08em'
+    }
+  }, "Seções"), NAV.map(n => /*#__PURE__*/React.createElement("a", {
+    key: n.id,
+    href: '#' + n.id,
+    onClick: () => setOpen(false),
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10,
+      padding: '10px 14px',
+      margin: '2px 8px',
+      fontSize: 13,
+      fontWeight: 500,
+      borderRadius: 8,
+      cursor: 'pointer',
+      transition: 'all .15s',
+      textDecoration: 'none',
+      color: active === n.id ? '#fff' : 'rgba(255,255,255,.6)',
+      background: active === n.id ? 'rgba(255,255,255,.14)' : 'transparent'
+    }
+  }, /*#__PURE__*/React.createElement("span", null, n.ic), /*#__PURE__*/React.createElement("span", null, n.l))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 'auto',
+      padding: 16,
+      borderTop: '1px solid rgba(255,255,255,.12)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'rgba(255,255,255,.4)'
+    }
+  }, "Atualizado em"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 600,
+      color: 'rgba(255,255,255,.85)',
+      marginTop: 2
+    }
+  }, fmtM(last_update)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: 'rgba(255,255,255,.35)',
+      marginTop: 6
+    }
+  }, "Embratur · ANAC · BCB"))));
+}
+function TopBar({
+  setOpen
+}) {
+  return /*#__PURE__*/React.createElement("header", {
+    style: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 40,
+      height: 56,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 14,
+      padding: '0 16px',
+      background: C.primary,
+      boxShadow: '0 1px 10px rgba(0,0,0,.2)'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "lg:hidden",
+    onClick: () => setOpen(o => !o),
+    style: {
+      color: '#fff',
+      fontSize: 20,
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      padding: '0 4px'
+    }
+  }, "☰"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 34,
+      height: 34,
+      borderRadius: 9,
+      background: 'rgba(255,255,255,.13)',
+      fontSize: 18,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  }, "🌊"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: '#fff',
+      fontWeight: 700,
+      fontSize: 14,
+      lineHeight: 1.2
+    }
+  }, "Monitor de Turismo Internacional"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: 'rgba(255,255,255,.5)',
+      fontSize: 11
+    }
+  }, "Rio de Janeiro"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginLeft: 'auto',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      padding: '3px 10px',
+      borderRadius: 20,
+      background: 'rgba(0,196,180,.2)',
+      color: '#00C4B4',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 5
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 6,
+      height: 6,
+      borderRadius: '50%',
+      background: '#00C4B4',
+      display: 'inline-block'
+    }
+  }), "Dados até ", fmtM(last_update))));
+}
+function RightPanel() {
+  const last = series[series.length - 1];
+  const yoy = series.length >= 13 ? series[series.length - 13] : null;
+  const cambios = [{
+    l: 'USD/BRL',
+    k: 'usd_brl',
+    c: C.amber
+  }, {
+    l: 'EUR/BRL',
+    k: 'eur_brl',
+    c: C.accent
+  }, {
+    l: 'ARS/BRL',
+    k: 'ars_brl',
+    c: C.warm
+  }, {
+    l: 'CLP/BRL',
+    k: 'clp_brl',
+    c: C.purple
+  }, {
+    l: 'UYU/BRL',
+    k: 'uyu_brl',
+    c: C.green
+  }];
+  const origens = [{
+    l: 'Argentina',
+    k: 'chegadas_arg',
+    c: C.warm
+  }, {
+    l: 'Europa',
+    k: 'chegadas_europa',
+    c: C.accent
+  }, {
+    l: 'Chile',
+    k: 'chegadas_chile',
+    c: C.purple
+  }, {
+    l: 'EUA',
+    k: 'chegadas_eua',
+    c: C.amber
+  }, {
+    l: 'Uruguai',
+    k: 'chegadas_uru',
+    c: C.green
+  }];
+  const maxOr = Math.max(...origens.map(o => last[o.k] || 0));
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: '100%',
+      flexShrink: 0,
+      paddingTop: 72,
+      paddingBottom: 40,
+      paddingRight: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'sticky',
+      top: 80,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 12
+    }
+  }, /*#__PURE__*/React.createElement(SideMapSection, null), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      padding: 14,
+      boxShadow: '0 1px 4px rgba(0,0,0,.06)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: C.muted,
+      textTransform: 'uppercase',
+      letterSpacing: '0.05em',
+      marginBottom: 10
+    }
+  }, "Câmbio — ", fmtM(last.mes)), cambios.map(cx => {
+    const yoyV = yoy ? pct(last[cx.k], yoy[cx.k]) : null;
+    return /*#__PURE__*/React.createElement("div", {
+      key: cx.k,
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '5px 0',
+        borderBottom: `1px solid ${C.border}`
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: 6
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 8,
+        height: 8,
+        borderRadius: '50%',
+        background: cx.c,
+        display: 'inline-block',
+        flexShrink: 0
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: C.muted
+      }
+    }, cx.l)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: 'right'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: C.text,
+        fontFamily: 'monospace'
+      }
+    }, fmtN(last[cx.k], cx.k === 'ars_brl' || cx.k === 'clp_brl' ? 4 : 3)), yoyV != null && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: yoyV >= 0 ? C.accent : C.warm
+      }
+    }, yoyV >= 0 ? '▲' : '▼', fmtN(Math.abs(yoyV), 1), "% YoY")));
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      padding: 14,
+      boxShadow: '0 1px 4px rgba(0,0,0,.06)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: C.muted,
+      textTransform: 'uppercase',
+      letterSpacing: '0.05em',
+      marginBottom: 10
+    }
+  }, "Custo Operacional"), [{
+    l: 'Brent',
+    k: 'brent_close',
+    u: 'USD/barril'
+  }, {
+    l: 'QAV',
+    k: 'qav',
+    u: 'USD/galão'
+  }].map(cx => {
+    const yoyV = yoy ? pct(last[cx.k], yoy[cx.k]) : null;
+    return /*#__PURE__*/React.createElement("div", {
+      key: cx.k,
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '5px 0',
+        borderBottom: `1px solid ${C.border}`
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: C.muted
+      }
+    }, cx.l), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: C.border
+      }
+    }, cx.u)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: 'right'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: C.primary,
+        fontFamily: 'monospace'
+      }
+    }, "US$", fmtN(last[cx.k], 2)), yoyV != null && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: yoyV >= 0 ? C.warm : C.accent
+      }
+    }, yoyV >= 0 ? '▲' : '▼', fmtN(Math.abs(yoyV), 1), "% YoY")));
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      padding: 14,
+      boxShadow: '0 1px 4px rgba(0,0,0,.06)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: C.muted,
+      textTransform: 'uppercase',
+      letterSpacing: '0.05em',
+      marginBottom: 10
+    }
+  }, "Ranking Origens — ", fmtM(last.mes)), origens.sort((a, b) => (last[b.k] || 0) - (last[a.k] || 0)).map((o, i) => {
+    const v = last[o.k] || 0,
+      pct2 = (v / maxOr * 100).toFixed(0);
+    return /*#__PURE__*/React.createElement("div", {
+      key: o.k,
+      style: {
+        marginBottom: 8
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginBottom: 2
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        color: C.text,
+        fontWeight: i === 0 ? 700 : 400
+      }
+    }, i + 1, ". ", o.l), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        fontFamily: 'monospace',
+        color: o.c,
+        fontWeight: 600
+      }
+    }, fmtN(v))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: 4,
+        borderRadius: 2,
+        background: C.bg
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: '100%',
+        borderRadius: 2,
+        background: o.c,
+        width: pct2 + '%',
+        transition: 'width .3s'
+      }
+    })));
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.surface,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      padding: 14,
+      boxShadow: '0 1px 4px rgba(0,0,0,.06)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: C.muted,
+      textTransform: 'uppercase',
+      letterSpacing: '0.05em',
+      marginBottom: 10
+    }
+  }, "Oferta Galeão — ", fmtM(last.mes)), [{
+    l: 'Voos internacionais',
+    k: 'voos',
+    u: ''
+  }, {
+    l: 'Assentos',
+    k: 'assentos',
+    u: ''
+  }, {
+    l: 'Rotas',
+    k: 'rotas',
+    u: ''
+  }].map(cx => {
+    const yoyV = yoy ? pct(last[cx.k], yoy[cx.k]) : null;
+    return /*#__PURE__*/React.createElement("div", {
+      key: cx.k,
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '5px 0',
+        borderBottom: `1px solid ${C.border}`
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: C.muted
+      }
+    }, cx.l), /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: 'right'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: C.primary,
+        fontFamily: 'monospace'
+      }
+    }, fmtN(last[cx.k])), yoyV != null && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: yoyV >= 0 ? C.accent : C.warm
+      }
+    }, yoyV >= 0 ? '▲' : '▼', fmtN(Math.abs(yoyV), 1), "% YoY")));
+  }))));
+}
+function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('dados');
+  useEffect(() => {
+    const obs = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) setActiveSection(e.target.id);
+    }), {
+      threshold: .25
+    });
+    NAV.forEach(n => {
+      const el = document.getElementById(n.id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, []);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'Inter,sans-serif'
+    }
+  }, /*#__PURE__*/React.createElement(TopBar, {
+    setOpen: setSidebarOpen
+  }), /*#__PURE__*/React.createElement(Sidebar, {
+    active: activeSection,
+    open: sidebarOpen,
+    setOpen: setSidebarOpen
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "lg:ml-56",
+    style: {
+      display: 'flex',
+      alignItems: 'flex-start',
+      gap: 0
+    }
+  }, /*#__PURE__*/React.createElement("main", {
+    style: {
+      paddingTop: 72,
+      minHeight: '100vh',
+      flex: '0 0 70%',
+      minWidth: 0,
+      paddingLeft: 16,
+      paddingRight: 16,
+      paddingBottom: 40
+    },
+    className: "lg:px-6"
+  }, /*#__PURE__*/React.createElement(DadosSection, null), /*#__PURE__*/React.createElement(CorrelacoesSection, null), /*#__PURE__*/React.createElement(LagsSection, null), /*#__PURE__*/React.createElement(ProjecaoSection, null), /*#__PURE__*/React.createElement(MetodologiaSection, null), /*#__PURE__*/React.createElement("footer", {
+    style: {
+      marginTop: 40,
+      paddingTop: 20,
+      borderTop: '1px solid #E2E8F0',
+      textAlign: 'center',
+      fontSize: 11,
+      color: '#94A3B8'
+    }
+  }, "Monitor de Turismo Internacional — Rio de Janeiro · Análise de Dados & Inteligência de Mercado · Embratur · ANAC · BCB · ", new Date().getFullYear())), /*#__PURE__*/React.createElement("div", {
+    className: "hidden xl:block",
+    style: {flex:'0 0 30%', minWidth:0}
+  }, /*#__PURE__*/React.createElement(RightPanel, null))));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(App, null));
+
+</script>
+</body>
+</html>
