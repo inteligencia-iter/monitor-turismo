@@ -2466,14 +2466,14 @@ async function generateExportPDF() {
     const segTotal = forecast.reduce((s,f) => s + Math.round(seg.val(f)), 0);
     const segTotalLo = forecast.reduce((s,f) => s + Math.round(seg.lo(f)), 0);
     const segTotalHi = forecast.reduce((s,f) => s + Math.round(seg.hi(f)), 0);
-    doc.setFillColor(...sc); doc.rect(ML, y, CW, rowH, 'F');
+    doc.setFillColor(...sc); doc.rect(ML, y, CW, 6.5, 'F');
     doc.setFont(FONT,'bold'); doc.setFontSize(7.5); doc.setTextColor(...C.white);
     doc.text('TOTAL PROJETADO', tC[0]+3, y+4.3);
     doc.text(n(segTotal), tC[1]+20, y+4.3, {align:'right'});
     doc.setTextColor(200, 225, 245);
     doc.text(n(segTotalLo), tC[2]+20, y+4.3, {align:'right'});
     doc.text(n(segTotalHi), tC[3]+22, y+4.3, {align:'right'});
-    y += rowH;
+    y += 6.5;
 
     y+=6;
     doc.setDrawColor(...C.teal); doc.setLineWidth(0.3); doc.line(ML,y,W-MR,y);
@@ -3178,3 +3178,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 </script>
 </body>
 </html>
+  
