@@ -2054,7 +2054,7 @@ async function generateExportPDF() {
   // ══════════════════════════════════════════════════════════════════════════
   // GLOSSÁRIO
   // ══════════════════════════════════════════════════════════════════════════
-  addPage();
+  doc.addPage();
   doc.setFillColor(...C.navy); doc.rect(0, 0, W, 22, 'F');
   doc.setFont(FONT,'bold'); doc.setFontSize(14); doc.setTextColor(...C.white);
   doc.text('Glossário', ML, 14);
@@ -2086,7 +2086,7 @@ async function generateExportPDF() {
     const lines = doc.splitTextToSize(def, defW);
     const blockH = Math.max(7, lines.length * 4.2 + 3);
     if (yg + blockH > H - 15) {
-      addPage();
+      doc.addPage();
       doc.setFillColor(...C.navy); doc.rect(0, 0, W, 22, 'F');
       doc.setFont(FONT,'bold'); doc.setFontSize(14); doc.setTextColor(...C.white);
       doc.text('Glossário (continuação)', ML, 14);
