@@ -1889,31 +1889,32 @@ async function generateExportPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
-  // Stolzl carregada via fetch (hospedada em /fonts/ no GitHub Pages)
-  let stolzlLoaded = false;
+  // Stolzl via fetch + FileReader (async, nao bloqueia UI)
+  const bufToB64 = buf => new Promise(resolve => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result.split(',')[1]);
+    reader.readAsDataURL(new Blob([buf]));
+  });
+  let FONT = 'helvetica';
   try {
-    const baseUrl = window.location.href.replace(/\/[^\/]*$/, '');
+    const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '');
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
     const [rR, bR] = await Promise.all([
-      fetch(baseUrl + '/fonts/Stolzl-Regular.ttf'),
-      fetch(baseUrl + '/fonts/Stolzl-Bold.ttf'),
+      fetch(baseUrl + '/fonts/Stolzl-Regular.ttf', {signal: ctrl.signal}),
+      fetch(baseUrl + '/fonts/Stolzl-Bold.ttf',    {signal: ctrl.signal}),
     ]);
+    clearTimeout(timer);
     if (rR.ok && bR.ok) {
-      const toB64 = async r => {
-        const buf = await r.arrayBuffer();
-        const bytes = new Uint8Array(buf);
-        let bin = '';
-        for (let i = 0; i < bytes.byteLength; i++) bin += String.fromCharCode(bytes[i]);
-        return btoa(bin);
-      };
-      const [rB64, bB64] = await Promise.all([toB64(rR), toB64(bR)]);
+      const [rBuf, bBuf] = await Promise.all([rR.arrayBuffer(), bR.arrayBuffer()]);
+      const [rB64, bB64] = await Promise.all([bufToB64(rBuf), bufToB64(bBuf)]);
       doc.addFileToVFS('Stolzl-Regular.ttf', rB64);
-      doc.addFont('Stolzl-Regular.ttf', 'Stolzl', 'normal', 'Identity-H');
+      doc.addFont('Stolzl-Regular.ttf', 'Stolzl', 'normal');
       doc.addFileToVFS('Stolzl-Bold.ttf', bB64);
-      doc.addFont('Stolzl-Bold.ttf', 'Stolzl', 'bold', 'Identity-H');
-      stolzlLoaded = true;
+      doc.addFont('Stolzl-Bold.ttf', 'Stolzl', 'bold');
+      FONT = 'Stolzl';
     }
-  } catch(e) { stolzlLoaded = false; }
-  const FONT = stolzlLoaded ? 'Stolzl' : 'helvetica';
+  } catch(e) { FONT = 'helvetica'; }
 
 
   const W = 210, H = 297, ML = 14, MR = 14, CW = W - ML - MR;
@@ -2698,7 +2699,7 @@ function Sidebar({
       background: active === n.id ? 'rgba(255,255,255,.14)' : 'transparent'
     }
   }, /*#__PURE__*/React.createElement("span", null, n.ic), /*#__PURE__*/React.createElement("span", null, n.l))), /*#__PURE__*/React.createElement("button", {
-    onClick: function() { generateExportPDF(); },
+    onClick: function() { generateExportPDF().catch(function(e){ alert('Erro ao gerar PDF: ' + (e && e.message ? e.message : String(e))); }); },
     style: {
       margin: '12px 8px 4px',
       padding: '10px 14px',
